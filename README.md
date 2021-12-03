@@ -28,7 +28,7 @@
 テレビや雑誌の健康コラムのメモを取る時
 
 ## 設計書
-<...>
+
 
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1XCOM2jMdW0VuwEhBdDRJByj4kLZp9EcA-Ho7RLU52cE/edit?usp=sharing
