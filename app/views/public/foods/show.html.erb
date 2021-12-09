@@ -2,22 +2,16 @@
   <div class="row">
     <h2>詳細画面</h2>
     <div class="food">
-      <%= @food_name %> <%= @food.rate %>
-      <%= @food_compound %>
-      <%= @food_genre %>
+      <%= @food.food_name.name %> <%= @food.rate %>
+      <%= @food.compound.name %>
+      <%= @food.genre.name %>
       <%= @food.function %>
       <%= @food.comment %>
       <%= @food.created_at %>
-      <%= @food_user %>
+      <%= @food.user.name %>
       <%= link_to "編集", edit_food_path(@food) %>
       <%= link_to "削除", food_path, method: :delete %>
     </div>
-
-<% Compound.all.each do |c| %>
-<%= c.name %>
-<% end %>
-<% @compound = @food.food_compounds.compound_id %>
-<%= @compound %>
 
   </div>
 </div>

@@ -1,40 +1,46 @@
 class Public::FoodsController < ApplicationController
   def show
     @food = Food.find(params[:id])
-    @food_name = @food.food_name.name
-    @food_genre = @food.genre.name
-    @food_user = @food.user.name
-    @food_compound = Compound.find(FoodCompound.find_by(food_id: params[:id]).compound_id).name
+
   end
+
   def index
   end
+
   def new
     @food = Food.new
     @food_name = FoodName.new
     @compound = Compound.new
   end
+
   def edit
     @food = Food.find(params[:id])
-    @food_name = @food.food_name.name
-    @compound = @food.compounds.name
+    @food_name = FoodName.find(@food.food_name_id)
+    @compound = Compound.find(@food.compound_id)
   end
+
   def create
     @food = Food.new(food_params)
-    @food_name = FoodName.new(food_name_params) #field for
-    @compound = Compound.new(compound_params) #field for
+    @food_name = FoodName.new(food_name_params) #field for -> create変更？
+    @compound = Compound.new(compound_params) #field for -> create変更？
     @food.user_id = current_user.id if user_signed_in?
-    if @food_name.save && @compound.save
-      @food.food_name_id = @food_name.id  #food_name.create -> id取得
-        if @food.save
-          @food.food_compounds.create(compound_id: @compound.id) #中間テーブル
-        else render :new
-        end
+    @food.food_name_id = @food_name.id if @food_name.save
+    @food.compound_id = @compound.id if @compound.save
+    if @food.save
+      FoodCompound.create(compound_id: @compound.id, food_name_id: @food_name.id) #中間テーブル
       redirect_to food_path(@food)
     else render :new
     end
   end
+
   def update
+    @food = Food.find(params[:id])
+    if @food.update(food_params) && FoodName.find(@food.food_name_id).update(food_name_params) && Compound.find(@food.compound_id).update(compound_params)
+    redirect_to food_path(@food)
+    else render :edit
+    end
   end
+
   def destroy
     if Food.find(params[:id]).destroy
     redirect_to root_path
