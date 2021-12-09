@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+
+    <h2>編集画面</h2>
+    <div class="form">
+      <%= form_with model: @food do |f| %>
+
+        <%= fields_for @food_name do |name| %>
+          <%= name.text_field :name %>
+        <% end %>
+        <%= fields_for @compound do |compound| %>
+          <%= compound.text_field :name %>
+        <% end %>
+        <%= f.text_field :function %>
+        <%= f.text_area :comment %>
+        <%= f.collection_select(:genre_id, Genre.all, :id, :name) %>
+        <%# ratyあとで %>
+        <%= f.number_field :rate %>
+        <%= f.submit %>
+      <% end %>
+
+    </div>
+  </div>
+</div>
