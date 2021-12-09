@@ -2,8 +2,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, authentication_keys: [:name]
          
-  has_many :foods
-  has_many :favorites
+  has_many :foods, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   has_many :follow, class_name:"Relationship", foreign_key:"follow_id"
   has_many :followed, class_name:"Relationship", foreign_key:"followed_id"
   

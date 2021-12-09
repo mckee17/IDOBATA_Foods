@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2021_12_09_014116) do
     t.string "profile_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "compound_id"
+    t.integer "compound_id", null: false
   end
 
   create_table "genres", force: :cascade do |t|
