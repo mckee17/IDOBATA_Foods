@@ -4,12 +4,21 @@
     <h2>編集画面</h2>
     <div class="form">
       <%= form_with model: @food do |f| %>
-
         <%= fields_for @food_name do |name| %>
-          <%= name.text_field :name %>
+          <%= name.text_field :name, list: 'food_name_list' %>
+          <datalist id='food_name_list'>
+            <% FoodName.all.each do |n| %>
+            <option value=<%= n.name %>>
+            <% end %>
+          </datalist>
         <% end %>
         <%= fields_for @compound do |compound| %>
-          <%= compound.text_field :name %>
+          <%= compound.text_field :name, list: 'compound_list' %>
+          <datalist id='compound_list'>
+            <% Compound.all.each do |c| %>
+            <option value=<%= c.name %>>
+            <% end %>
+          </datalist>
         <% end %>
         <%= f.text_field :function %>
         <%= f.text_area :comment %>
