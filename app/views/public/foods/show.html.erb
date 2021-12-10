@@ -11,7 +11,7 @@
           <% end %>
             <tr><td><%= @food.compound.name %></td><td><%= @food.function %></td></tr>
             <tr><td><%= @food.comment %></td></tr>
-            <tr><td><%= @food.rate %></td><td><%= @food.created_at %></td><td><%= @food.user.name %></td>
+            <tr><td><%= @food.rate %></td><td><%= @food.created_at.strftime("%Y/%m/%d") %></td><td><%= @food.user.name %></td>
               <% if Relationship.find_by(followed_id: @food.user.id, follow_id: current_user.id).present? %>
                 <td><%= link_to "フォローを外す", relationship_path(id: @food.user.id), method: :delete, class: "btn btn-sm btn-secondary" %></td>
               <% elsif !( @food.user_id == current_user.id) %>

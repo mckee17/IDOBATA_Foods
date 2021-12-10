@@ -9967,3 +9967,47 @@ Processing by Public::RelationshipsController#followed as HTML
 Completed 200 OK in 116ms (Views: 111.1ms | ActiveRecord: 0.6ms)
 
 
+Started GET "/foods/1" for 124.25.12.195 at 2021-12-10 21:04:03 +0000
+Cannot render console from 124.25.12.195! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by Public::FoodsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFood Load (0.2ms)[0m  [1m[34mSELECT  "foods".* FROM "foods" WHERE "foods"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/public/foods_controller.rb:3
+  Rendering public/foods/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/public/foods/show.html.erb:7
+  [1m[36mFavorite Load (1.4ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."food_id" = ? AND "favorites"."user_id" = ? LIMIT ?[0m  [["food_id", 1], ["user_id", 2], ["LIMIT", 1]]
+  ↳ app/views/public/foods/show.html.erb:7
+  [1m[36mCompound Load (0.1ms)[0m  [1m[34mSELECT  "compounds".* FROM "compounds" WHERE "compounds"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/public/foods/show.html.erb:12
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/public/foods/show.html.erb:14
+  [1m[36mRelationship Load (0.1ms)[0m  [1m[34mSELECT  "relationships".* FROM "relationships" WHERE "relationships"."followed_id" = ? AND "relationships"."follow_id" = ? LIMIT ?[0m  [["followed_id", 1], ["follow_id", 2], ["LIMIT", 1]]
+  ↳ app/views/public/foods/show.html.erb:15
+  Rendered public/foods/show.html.erb within layouts/application (89.2ms)
+Completed 200 OK in 609ms (Views: 581.5ms | ActiveRecord: 6.4ms)
+
+
+Started GET "/foods/1" for 124.25.12.195 at 2021-12-10 21:04:40 +0000
+Cannot render console from 124.25.12.195! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Public::FoodsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFood Load (0.1ms)[0m  [1m[34mSELECT  "foods".* FROM "foods" WHERE "foods"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/public/foods_controller.rb:3
+  Rendering public/foods/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/public/foods/show.html.erb:7
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."food_id" = ? AND "favorites"."user_id" = ? LIMIT ?[0m  [["food_id", 1], ["user_id", 2], ["LIMIT", 1]]
+  ↳ app/views/public/foods/show.html.erb:7
+  [1m[36mCompound Load (0.1ms)[0m  [1m[34mSELECT  "compounds".* FROM "compounds" WHERE "compounds"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/public/foods/show.html.erb:12
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/public/foods/show.html.erb:14
+  [1m[36mRelationship Load (0.1ms)[0m  [1m[34mSELECT  "relationships".* FROM "relationships" WHERE "relationships"."followed_id" = ? AND "relationships"."follow_id" = ? LIMIT ?[0m  [["followed_id", 1], ["follow_id", 2], ["LIMIT", 1]]
+  ↳ app/views/public/foods/show.html.erb:15
+  Rendered public/foods/show.html.erb within layouts/application (15.1ms)
+Completed 200 OK in 150ms (Views: 145.3ms | ActiveRecord: 0.6ms)
+
+
