@@ -12,13 +12,10 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :foods
-    resources :compounds, only: [:create, :update, :destroy]
-    resources :food_compounds, only: [:create, :destroy]
-    resources :food_names, only: [:create, :update, :destroy]
     resources :favorites, only: [:index, :create, :destroy]
     resources :relationships, only: [:create, :destroy] do
       collection do
-        get 'follow'
+        get 'followed'
       end
     end
     get 'searchs', to: 'searchs#search', as: 'search'

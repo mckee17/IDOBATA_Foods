@@ -1,17 +1,32 @@
 <div class="container">
   <div class="row">
     <h2>詳細画面</h2>
-    <div class="food">
-      <%= @food.food_name.name %> <%= @food.rate %>
-      <%= @food.compound.name %>
-      <%= @food.genre.name %>
-      <%= @food.function %>
-      <%= @food.comment %>
-      <%= @food.created_at %>
-      <%= @food.user.name %>
-      <%= link_to "編集", edit_food_path(@food) %>
-      <%= link_to "削除", food_path, method: :delete %>
+    <div class="table">
+      <table>
+        <tbody>
+          <% if Favorite.find_by(food_id: @food.id, user_id: current_user.id).present? %>
+            <tr><%= link_to favorite_path(id: @food.id), method: :delete do %>★<% end %></tr>
+          <% else %>
+            <tr><%= link_to favorites_path(id: @food.id), method: :post do %>☆<% end %></tr>
+          <% end %>
+            <tr><td><%= @food.compound.name %></td><td><%= @food.function %></td></tr>
+            <tr><td><%= @food.comment %></td></tr>
+            <tr><td><%= @food.rate %></td><td><%= @food.created_at %></td><td><%= @food.user.name %></td>
+              <% if Relationship.find_by(followed_id: @food.user.id, follow_id: current_user.id).present? %>
+                <td><%= link_to "フォローを外す", relationship_path(id: @food.user.id), method: :delete, class: "btn btn-sm btn-secondary" %></td>
+              <% elsif !( @food.user_id == current_user.id) %>
+                <td><%= link_to "フォローをする", relationships_path(id: @food.user.id), method: :post, class: "btn btn-sm btn-success" %></td>
+              <% else %>
+                <td></td>
+              <% end %>
+            </tr>
+          <% if @food.user_id == current_user.id %>
+            <tr><td><%= link_to "編集", edit_food_path(@food) %></td>
+              <td><%= link_to "削除", food_path, method: :delete %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
-
   </div>
 </div>
