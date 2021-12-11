@@ -1,3 +1,4 @@
 <h1>Homes#top</h1>
 <%= link_to "Log_out", destroy_user_session_path, method: :delete %>
 <%= link_to "Log_in",  new_user_session_path %>
+<%= link_to ">>", foods_path(id: :current) %>

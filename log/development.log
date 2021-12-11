@@ -10011,3 +10011,188 @@ Processing by Public::FoodsController#show as HTML
 Completed 200 OK in 150ms (Views: 145.3ms | ActiveRecord: 0.6ms)
 
 
+Started GET "/relationships" for 124.25.12.195 at 2021-12-11 03:26:40 +0000
+Cannot render console from 124.25.12.195! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+  
+ActionController::RoutingError (No route matches [GET] "/relationships"):
+  
+actionpack (5.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:22:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.6) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.4.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.6) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.6) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/relationships/followed" for 124.25.12.195 at 2021-12-11 03:26:57 +0000
+Cannot render console from 124.25.12.195! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Public::RelationshipsController#followed as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/public/relationships_controller.rb:3
+  Rendering public/relationships/followed.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follow_id" = ?[0m  [["follow_id", 2]]
+  ↳ app/views/public/relationships/followed.html.erb:15
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "foods" WHERE "foods"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/public/relationships/followed.html.erb:18
+  Rendered public/relationships/followed.html.erb within layouts/application (380.7ms)
+Completed 500 Internal Server Error in 435ms (ActiveRecord: 2.6ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `followed' for #<#<Class:0x000000000696a888>:0x000000000695af50>
+Did you mean?  @followed):
+    17:           <td><%= f.name %></td>
+    18:           <td>( <%= Food.where(user_id: f.id).count %> )</td>
+    19:           <td><%= link_to "フォローを外す", relationships_path(id: f.id), method: :delete, class: "btn btn-sm btn-secondary" %></td>
+    20:           <td><%= link_to ">>", foods_path(id: followed, user: f.id) %></td>
+    21:           </tr>
+    22:           <% end %>
+    23:         </tbody>
+  
+app/views/public/relationships/followed.html.erb:20:in `block in _app_views_public_relationships_followed_html_erb__629284116461966390_55050400'
+app/views/public/relationships/followed.html.erb:15:in `_app_views_public_relationships_followed_html_erb__629284116461966390_55050400'
+Started GET "/relationships/followed" for 124.25.12.195 at 2021-12-11 03:28:08 +0000
+Cannot render console from 124.25.12.195! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Public::RelationshipsController#followed as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/public/relationships_controller.rb:3
+  Rendering public/relationships/followed.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follow_id" = ?[0m  [["follow_id", 2]]
+  ↳ app/views/public/relationships/followed.html.erb:15
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "foods" WHERE "foods"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/public/relationships/followed.html.erb:18
+  Rendered public/relationships/followed.html.erb within layouts/application (6.5ms)
+Completed 200 OK in 465ms (Views: 460.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/foods?id=followed&user=1" for 124.25.12.195 at 2021-12-11 03:28:20 +0000
+Cannot render console from 124.25.12.195! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Public::FoodsController#index as HTML
+  Parameters: {"id"=>"followed", "user"=>"1"}
+Completed 500 Internal Server Error in 264ms (ActiveRecord: 0.0ms)
+
+
+  
+NameError (undefined local variable or method `followed' for #<Public::FoodsController:0x00007f3af43e2ca0>):
+  
+app/controllers/public/foods_controller.rb:9:in `index'
+Started GET "/relationships/followed" for 124.25.12.195 at 2021-12-11 03:28:54 +0000
+Cannot render console from 124.25.12.195! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Public::RelationshipsController#followed as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/public/relationships_controller.rb:3
+  Rendering public/relationships/followed.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follow_id" = ?[0m  [["follow_id", 2]]
+  ↳ app/views/public/relationships/followed.html.erb:15
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "foods" WHERE "foods"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/public/relationships/followed.html.erb:18
+  Rendered public/relationships/followed.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 103ms (Views: 99.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/relationships/followed" for 124.25.12.195 at 2021-12-11 03:29:44 +0000
+Cannot render console from 124.25.12.195! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Public::RelationshipsController#followed as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/public/relationships_controller.rb:3
+  Rendering public/relationships/followed.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follow_id" = ?[0m  [["follow_id", 2]]
+  ↳ app/views/public/relationships/followed.html.erb:15
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "foods" WHERE "foods"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/public/relationships/followed.html.erb:18
+  Rendered public/relationships/followed.html.erb within layouts/application (10.7ms)
+Completed 200 OK in 115ms (Views: 101.1ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/foods?id=followed&user=1" for 124.25.12.195 at 2021-12-11 03:29:46 +0000
+Cannot render console from 124.25.12.195! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Public::FoodsController#index as HTML
+  Parameters: {"id"=>"followed", "user"=>"1"}
+  Rendering public/foods/index.html.erb within layouts/application
+  [1m[36mFood Load (0.2ms)[0m  [1m[34mSELECT "foods".* FROM "foods" WHERE "foods"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/public/foods/index.html.erb:7
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT  "food_names".* FROM "food_names" WHERE "food_names"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/public/foods/index.html.erb:8
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/public/foods/index.html.erb:9
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."food_id" = ? AND "favorites"."user_id" = ? LIMIT ?[0m  [["food_id", 1], ["user_id", 2], ["LIMIT", 1]]
+  ↳ app/views/public/foods/index.html.erb:9
+  [1m[36mCompound Load (0.1ms)[0m  [1m[34mSELECT  "compounds".* FROM "compounds" WHERE "compounds"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/public/foods/index.html.erb:14
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/public/foods/index.html.erb:16
+  Rendered public/foods/index.html.erb within layouts/application (53.5ms)
+Completed 200 OK in 177ms (Views: 173.0ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/foods?id=followed&user=1" for 124.25.12.195 at 2021-12-11 03:30:13 +0000
+Cannot render console from 124.25.12.195! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Public::FoodsController#index as HTML
+  Parameters: {"id"=>"followed", "user"=>"1"}
+  Rendering public/foods/index.html.erb within layouts/application
+  [1m[36mFood Load (0.1ms)[0m  [1m[34mSELECT "foods".* FROM "foods" WHERE "foods"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/public/foods/index.html.erb:7
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT  "food_names".* FROM "food_names" WHERE "food_names"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/public/foods/index.html.erb:8
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/public/foods/index.html.erb:9
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."food_id" = ? AND "favorites"."user_id" = ? LIMIT ?[0m  [["food_id", 1], ["user_id", 2], ["LIMIT", 1]]
+  ↳ app/views/public/foods/index.html.erb:9
+  [1m[36mCompound Load (0.1ms)[0m  [1m[34mSELECT  "compounds".* FROM "compounds" WHERE "compounds"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/public/foods/index.html.erb:14
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/public/foods/index.html.erb:16
+  Rendered public/foods/index.html.erb within layouts/application (15.1ms)
+Completed 200 OK in 112ms (Views: 110.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 124.25.12.195 at 2021-12-11 03:32:23 +0000
+Cannot render console from 124.25.12.195! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Public::HomesController#top as HTML
+  Rendering public/homes/top.html.erb within layouts/application
+  Rendered public/homes/top.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 97ms (Views: 96.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/foods?id=current" for 124.25.12.195 at 2021-12-11 03:32:26 +0000
+Cannot render console from 124.25.12.195! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Public::FoodsController#index as HTML
+  Parameters: {"id"=>"current"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/public/foods_controller.rb:12
+  Rendering public/foods/index.html.erb within layouts/application
+  [1m[36mFood Load (0.1ms)[0m  [1m[34mSELECT "foods".* FROM "foods" WHERE "foods"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/views/public/foods/index.html.erb:7
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT  "food_names".* FROM "food_names" WHERE "food_names"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/public/foods/index.html.erb:8
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."food_id" = ? AND "favorites"."user_id" = ? LIMIT ?[0m  [["food_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  ↳ app/views/public/foods/index.html.erb:9
+  [1m[36mCompound Load (0.1ms)[0m  [1m[34mSELECT  "compounds".* FROM "compounds" WHERE "compounds"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/public/foods/index.html.erb:14
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/public/foods/index.html.erb:16
+  Rendered public/foods/index.html.erb within layouts/application (41.1ms)
+Completed 200 OK in 187ms (Views: 164.0ms | ActiveRecord: 7.3ms)
+
+

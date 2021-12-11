@@ -5,6 +5,12 @@ class Public::FoodsController < ApplicationController
   end
 
   def index
+    #followed_user or current_user
+    if params[:id] == "followed"
+      @foods = Food.where(user_id: params[:user])
+    elsif params[:id] == "current"
+      @foods = Food.where(user_id: current_user.id)
+    end
   end
 
   def new
