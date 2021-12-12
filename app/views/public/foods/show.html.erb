@@ -30,3 +30,11 @@
     </div>
   </div>
 </div>
+
+<% FoodName.all.each do |fn| %>
+<%= fn.name %>
+<% end %>
+
+<% Food.where(food_name_id: 3).each do |f| %>
+<%= f.id %>
+<% end %>

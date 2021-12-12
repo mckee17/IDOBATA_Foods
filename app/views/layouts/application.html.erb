@@ -10,6 +10,10 @@
   </head>
 
   <body>
+    <header>
+      <%= link_to "Log_out", destroy_user_session_path, method: :delete %>
+      <%= link_to "Log_in",  new_user_session_path %>
+    </header>
     <%= yield %>
   </body>
 </html>

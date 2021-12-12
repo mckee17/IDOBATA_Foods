@@ -4,5 +4,4 @@ class Food < ApplicationRecord
     belongs_to :user, optional: true
     belongs_to :compound
     has_many :favorites, dependent: :destroy
-
 end

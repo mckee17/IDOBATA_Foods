@@ -17,3 +17,18 @@
 /*@import 'font-awesome-sprockets';
 @import 'font-awesome';
 */
+
+.side_bar{
+  height: 550px;
+  overflow-y: auto;
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  font-weight: bold;
+  border: solid 3px;
+  border-radius: 10px;
+  -ms-overflow-style: none;  //scrollバー非表示
+  scrollbar-width: none;  //scrollバー非表示
+}
+.side_bar::-webkit-scrollbar {  //scrollバー非表示
+ display:none;
+}

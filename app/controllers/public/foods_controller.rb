@@ -10,6 +10,8 @@ class Public::FoodsController < ApplicationController
       @foods = Food.where(user_id: params[:user])
     elsif params[:id] == "current"
       @foods = Food.where(user_id: current_user.id)
+    else
+      @foods = Food.all
     end
   end
 
@@ -27,13 +29,26 @@ class Public::FoodsController < ApplicationController
 
   def create
     @food = Food.new(food_params)
-    @food_name = FoodName.new(food_name_params) #field for -> create変更？
-    @compound = Compound.new(compound_params) #field for -> create変更？
+    @food_name =  FoodName.new(food_name_params) #field for
+    @compound = Compound.new(compound_params) #field for
+
+    FoodName.all.each do |name| #uniq->food_name.id
+      @food.food_name_id = name.id if name.name == params[:food_name][:name]
+    end
+    if @food.food_name_id.blank? #not_uniq->food_name.id
+      @food_name.save
+      @food.food_name_id = @food_name.id
+    end
+    Compound.all.each do |compound| #uniq->compound.id
+      @food.compound_id = compound.id if compound.name == params[:compound][:name]
+    end
+    if @food.compound_id.blank? #not_uniq->compound.id
+      @compound.save
+      @food.compound_id = @compound.id
+    end
     @food.user_id = current_user.id if user_signed_in?
-    @food.food_name_id = @food_name.id if @food_name.save
-    @food.compound_id = @compound.id if @compound.save
     if @food.save
-      FoodCompound.create(compound_id: @compound.id, food_name_id: @food_name.id) #中間テーブル
+      FoodCompound.create(compound_id: @food.compound_id, food_name_id: @food.food_name_id) #foodname<->compound
       redirect_to food_path(@food)
     else render :new
     end

@@ -1,4 +1,17 @@
-<h1>Homes#top</h1>
-<%= link_to "Log_out", destroy_user_session_path, method: :delete %>
-<%= link_to "Log_in",  new_user_session_path %>
-<%= link_to ">>", foods_path(id: :current) %>
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <%= render partial: "side_bar" %>
+    </div>
+
+    <div class="col-9">
+      <h2>人気順</2>
+      <%#= 人気の定義を要検討 %>
+      <h2>新着順</h2>
+      <% @new.each do |n| %>
+        <%= n.food_name.name %>
+        <%= Food.where(food_name_id: n.food_name_id).average(:rate).round(1) %>
+      <% end %>
+    </div>
+  </div>
+</div>
