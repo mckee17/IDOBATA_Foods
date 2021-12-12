@@ -1,33 +1,76 @@
 <div class="container">
   <div class="row">
-    <h2>検索結果(全<%= @search.count %>件)</h2>
-     <% @search.each do |search| %>
+    <h2>検索結果(全<%= @search_count %>件)</h2>
+    <% if params[:id] == ("name" || "compound") %>
+      <% @search.each do |search| %>
+        <% @search_foods = search.foods %>
+        <% @search_foods.each do |food| %>
+          <div class="table">
+            <table>
+              <tbody>
+                <% if Favorite.find_by(food_id: food.id, user_id: current_user.id).present? %>
+                  <tr><%= link_to favorite_path(id: food.id), method: :delete do %>★<% end %></tr>
+                <% else %>
+                  <tr><%= link_to favorites_path(id: food.id), method: :post do %>☆<% end %></tr>
+                <% end %>
+                  <tr><td><%= food.compound.name %></td><td><%= food.function %></td></tr>
+                  <tr><td><%= food.comment %></td></tr>
+                  <tr><td><%= food.rate %></td><td><%= food.created_at.strftime("%Y/%m/%d") %></td><td><%= food.user.name %></td>
+                    <% if Relationship.find_by(followed_id: food.user.id, follow_id: current_user.id).present? %>
+                      <td><%= link_to "フォローを外す", relationship_path(id: food.user.id), method: :delete, class: "btn btn-sm btn-secondary" %></td>
+                    <% elsif !( food.user_id == current_user.id) %>
+                      <td><%= link_to "フォローをする", relationships_path(id: food.user.id), method: :post, class: "btn btn-sm btn-success" %></td>
+                    <% else %>
+                      <td></td>
+                    <% end %>
+                  </tr>
+                <% if food.user_id == current_user.id %>
+                  <tr><td><%= link_to "編集", edit_food_path(food) %></td>
+                    <td><%= link_to "削除", food_path(food), method: :delete %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        <% end %>
+      <% end %>
+    <% else %>
+      <% @search_foods.each do |food| %>
       <div class="table">
-      <table>
-        <tbody>
-          <% if Favorite.find_by(food_id: search.id, user_id: current_user.id).present? %>
-            <tr><%= link_to favorite_path(id: search.id), method: :delete do %>★<% end %></tr>
-          <% else %>
-            <tr><%= link_to favorites_path(id: search.id), method: :post do %>☆<% end %></tr>
-          <% end %>
-            <tr><td><%= search.compound.name %></td><td><%= food.function %></td></tr>
-            <tr><td><%= search.comment %></td></tr>
-            <tr><td><%= search.rate %></td><td><%= search.created_at.strftime("%Y/%m/%d") %></td><td><%= @earch.user.name %></td>
-              <% if Relationship.find_by(followed_id: search.user.id, follow_id: current_user.id).present? %>
-                <td><%= link_to "フォローを外す", relationship_path(id: search.user.id), method: :delete, class: "btn btn-sm btn-secondary" %></td>
-              <% elsif !( search.user_id == current_user.id) %>
-                <td><%= link_to "フォローをする", relationships_path(id: search.user.id), method: :post, class: "btn btn-sm btn-success" %></td>
-              <% else %>
-                <td></td>
-              <% end %>
-            </tr>
-          <% if search.user_id == current_user.id %>
-            <tr><td><%= link_to "編集", edit_food_path(search) %></td>
-              <td><%= link_to "削除", food_path, method: :delete %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+        <table>
+          <tbody>
+            <% if Favorite.find_by(food_id: food.id, user_id: current_user.id).present? %>
+              <tr><%= link_to favorite_path(id: food.id), method: :delete do %>★<% end %></tr>
+            <% else %>
+              <tr><%= link_to favorites_path(id: food.id), method: :post do %>☆<% end %></tr>
+            <% end %>
+              <tr><td><%= food.compound.name %></td><td><%= food.function %></td></tr>
+              <tr><td><%= food.comment %></td></tr>
+              <tr><td><%= food.rate %></td><td><%= food.created_at.strftime("%Y/%m/%d") %></td><td><%= food.user.name %></td>
+                <% if Relationship.find_by(followed_id: food.user.id, follow_id: current_user.id).present? %>
+                  <td><%= link_to "フォローを外す", relationship_path(id: food.user.id), method: :delete, class: "btn btn-sm btn-secondary" %></td>
+                <% elsif !( food.user_id == current_user.id) %>
+                  <td><%= link_to "フォローをする", relationships_path(id: food.user.id), method: :post, class: "btn btn-sm btn-success" %></td>
+                <% else %>
+                  <td></td>
+                <% end %>
+              </tr>
+            <% if food.user_id == current_user.id %>
+              <tr><td><%= link_to "編集", edit_food_path(food) %></td>
+                <td><%= link_to "削除", food_path(food), method: :delete %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  <% end %>
+
   </div>
 </div>
+
+<%= form_with url: '/searchs', method: :get, local: true do |f| %>
+<%= f.text_field :word, placeholder:"検索ワード" %>
+<%= f.select :id, { '名前': 'name', '成分名': 'compound', '機能': 'function' }, { include_blank: '選択してください' }, { class: 'form-control', required: true } %>
+<%= f.submit %>
+<% end %>
