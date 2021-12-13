@@ -4,21 +4,11 @@
     <div class="table">
       <table>
         <tbody>
-          <% if Favorite.find_by(food_id: @food.id, user_id: current_user.id).present? %>
-            <tr><%= link_to favorite_path(id: @food.id), method: :delete do %>★<% end %></tr>
-          <% else %>
-            <tr><%= link_to favorites_path(id: @food.id), method: :post do %>☆<% end %></tr>
-          <% end %>
+          <%= render partial: 'public/favorites/favorite', locals:{ food: @food } %>
             <tr><td><%= @food.compound.name %></td><td><%= @food.function %></td></tr>
             <tr><td><%= @food.comment %></td></tr>
             <tr><td><%= @food.rate %></td><td><%= @food.created_at.strftime("%Y/%m/%d") %></td><td><%= @food.user.name %></td>
-              <% if Relationship.find_by(followed_id: @food.user.id, follow_id: current_user.id).present? %>
-                <td><%= link_to "フォローを外す", relationship_path(id: @food.user.id), method: :delete, class: "btn btn-sm btn-secondary" %></td>
-              <% elsif !( @food.user_id == current_user.id) %>
-                <td><%= link_to "フォローをする", relationships_path(id: @food.user.id), method: :post, class: "btn btn-sm btn-success" %></td>
-              <% else %>
-                <td></td>
-              <% end %>
+          <%= render partial: 'public/relationships/relationship', locals:{ food: @food } %>
             </tr>
           <% if @food.user_id == current_user.id %>
             <tr><td><%= link_to "編集", edit_food_path(@food) %></td>
