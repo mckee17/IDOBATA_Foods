@@ -22,6 +22,6 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :genres, only: [:index,:edit, :create, :update]
+    resources :genres, only: [:index,:edit, :create, :update, :destroy]
   end
 end

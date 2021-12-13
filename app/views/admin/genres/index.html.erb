@@ -14,17 +14,13 @@
         <tr>
           <td><%= g.name %></td>
           <td><%= link_to '編集', edit_admin_genre_path(g) %></td>
+          <td><%= link_to '削除', admin_genre_path(g), method: :delete %></td>
         </tr>
         <% end %>
       </tbody>
     </table>
 
-    <div class="form">
-      <%= form_with model: @genre, url: "/admin/genres" do |f| %>
-        <%= f.text_field :name %>
-        <%= f.submit %>
-      <% end %>
-    </div>
+    <%= render partial: 'admin/genres/genre_create', locals:{ genre: @genre } %>
 
   </div>
 </div>

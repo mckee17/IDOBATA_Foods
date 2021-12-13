@@ -1,0 +1,17 @@
+<div class="table">
+  <table>
+    <tbody>
+      <%= render partial: 'public/favorites/favorite', locals:{ food: food } %>
+        <tr><td><%= food.compound.name %></td><td><%= food.function %></td></tr>
+        <tr><td><%= food.comment %></td></tr>
+        <tr><td><%= food.rate %></td><td><%= food.created_at.strftime("%Y/%m/%d") %></td><td><%= food.user.name %></td>
+      <%= render partial: 'public/relationships/relationship', locals:{ food: food } %>
+        </tr>
+      <% if food.user_id == current_user.id %>
+        <tr><td><%= link_to "編集", edit_food_path(food) %></td>
+          <td><%= link_to "削除", food_path(food), method: :delete %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

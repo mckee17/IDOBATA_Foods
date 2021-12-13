@@ -1,22 +1,8 @@
 <div class="container">
   <div class="row">
     <h2>お気に入り</h2>
-    <div class="table">
-      <table>
-        <tbody>
-          <% @foods.each do |food| %>
-          <tr><td><%= food.food_name.name %></td></tr>
-          <tr><% if Favorite.find_by(food_id: food.id, user_id: current_user.id).present? %>
-            <td><%= link_to favorite_path(id: food.id), method: :delete do %>★<% end %></td>
-          <% else %>
-            <td><%= link_to favorites_path(id: food.id), method: :post do %>☆<% end %></td>
-          <% end %></tr>
-          <tr><td><%= food.compound.name %></td><td><%= food.function %></td></tr>
-          <tr><td><%= food.comment %></td></tr>
-          <tr><td><%= food.rate %></td><td><%= food.created_at %></td><td><%= food.user.name %></td></tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+    <% @foods.each do |food| %>
+    <%= render partial: 'public/foods/food', locals:{ food: food } %>
+    <% end %>
   </div>
 </div>

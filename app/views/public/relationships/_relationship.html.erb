@@ -1,6 +1,6 @@
 <% if Relationship.find_by(followed_id: food.user.id, follow_id: current_user.id).present? %>
   <td><%= link_to "フォローを外す", relationship_path(id: food.user.id), method: :delete, class: "btn btn-sm btn-secondary" %></td>
-<% elsif !( @food.user_id == current_user.id) %>
+<% elsif !( food.user_id == current_user.id) %>
   <td><%= link_to "フォローをする", relationships_path(id: food.user.id), method: :post, class: "btn btn-sm btn-success" %></td>
 <% else %>
   <td></td>
