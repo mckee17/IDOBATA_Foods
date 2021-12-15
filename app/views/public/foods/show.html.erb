@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
-    <h2>詳細画面</h2>
+    <div class="h2 col-12">詳細画面</div>
+    <div class="h5 mt-3 food_name">【食品名】<%= @food.food_name.name %></div>
     <%= render partial: 'public/foods/food', locals:{ food: @food } %>
   </div>
 </div>

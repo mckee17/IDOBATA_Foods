@@ -1,8 +1,0 @@
-<div class="container">
-  <div class="row">
-    <h2>お気に入り</h2>
-    <% @foods.each do |food| %>
-    <%= render partial: 'public/foods/food', locals:{ food: food } %>
-    <% end %>
-  </div>
-</div>

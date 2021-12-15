@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :foods
-    resources :favorites, only: [:index, :create, :destroy]
+    resources :favorites, only: [:create, :destroy]
     resources :relationships, only: [:create, :destroy] do
       collection do
         get 'followed'

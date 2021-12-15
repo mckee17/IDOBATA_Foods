@@ -2,10 +2,11 @@
   <table>
     <tbody>
       <%= render partial: 'public/favorites/favorite', locals:{ food: food } %>
-        <tr><td><%= food.compound.name %></td><td><%= food.function %></td></tr>
+        <tr><td>【成分名】<%= food.compound.name %></td><td>【効能】<%= food.function %></td></tr>
         <tr><td><%= food.comment %></td></tr>
-        <tr><td><%= food.rate %></td><td><%= food.created_at.strftime("%Y/%m/%d") %></td><td><%= food.user.name %></td>
-      <%= render partial: 'public/relationships/relationship', locals:{ food: food } %>
+        <tr><td><%= food.rate %></td><td><%= food.user.name %></td>
+            <%= render partial: 'public/relationships/relationship', locals:{ food: food } %>
+            <td><%= food.created_at.strftime("%Y/%m/%d") %></td>
         </tr>
       <% if food.user_id == current_user.id %>
         <tr><td><%= link_to "編集", edit_food_path(food) %></td>

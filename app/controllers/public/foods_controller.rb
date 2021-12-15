@@ -1,18 +1,20 @@
 class Public::FoodsController < ApplicationController
   def show
     @food = Food.find(params[:id])
-
   end
 
   def index
-    #followed_user or current_user
-    if params[:id] == "followed"
-      @foods = Food.where(user_id: params[:user])
-    elsif params[:id] == "current"
-      @foods = Food.where(user_id: current_user.id)
-    else
-      @foods = Food.all
+    case params[:id]
+      when "followed"
+        @foods = Food.where(user_id: params[:user])
+      when "current"
+        @foods = Food.where(user_id: current_user.id)
+      when "favorite"
+        @foods = current_user.favorite_foods
+      else
+        @foods = Food.all
     end
+    @food_names = @foods.food_name_of_foods
   end
 
   def new
