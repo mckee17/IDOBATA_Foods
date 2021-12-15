@@ -19,20 +19,16 @@ class Admin::GenresController < ApplicationController
 
   def create
     @genre = Genre.new(genre_params)
-    if @genre.save
-      redirect_back fallback_location: admin_genres_path
-    else
-      render :index
-    end
+    @genres = Genre.all
+    @genre.save
+      #redirect_back fallback_location: admin_genres_path
   end
 
   def destroy
     @genre = Genre.find(params[:id])
-    if @genre.destroy
-      redirect_back fallback_location: admin_genres_path
-    else
-      render :index
-    end
+    @genres = Genre.all
+    @genre.destroy
+      #redirect_back fallback_location: admin_genres_path
   end
 
   private

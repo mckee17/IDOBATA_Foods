@@ -1,26 +1,12 @@
 <div class="container">
   <div class="row">
-    <h2>ジャンル設定</h2>
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th>ジャンル一覧</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @genres.each do |g| %>
-        <tr>
-          <td><%= g.name %></td>
-          <td><%= link_to '編集', edit_admin_genre_path(g) %></td>
-          <td><%= link_to '削除', admin_genre_path(g), method: :delete %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-
-    <%= render partial: 'admin/genres/genre_create', locals:{ genre: @genre } %>
-
+    <div class="col-8">
+      <div class="h2">ジャンル設定</div>
+      <div id="genre_index"><%= render partial: 'admin/genres/genre', locals:{ genres: @genres } %></div>
+    </div>
+    <div class="form col-4">
+      <div class="h5">新規作成</div>
+      <div id="genre_new"><%= render partial: 'admin/genres/genre_new', locals:{ genre: @genre } %></div>
+    </div>
   </div>
 </div>

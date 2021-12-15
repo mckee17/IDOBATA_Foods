@@ -4,12 +4,14 @@ class Public::RelationshipsController < ApplicationController
   end
 
   def create
-    Relationship.create(followed_id: params[:id], follow_id: current_user.id)
-    redirect_back fallback_location: root_path
+    @food = Food.find(params[:id])
+    Relationship.create(followed_id: @food.user_id, follow_id: current_user.id)
+    #redirect_back fallback_location: root_path
   end
 
   def destroy
-    Relationship.find_by(followed_id: params[:id], follow_id: current_user.id).destroy
-    redirect_back fallback_location: root_path
+    @food = Food.find(params[:id])
+    Relationship.find_by(followed_id: @food.user_id, follow_id: current_user.id).destroy
+    #redirect_back fallback_location: root_path
   end
 end
