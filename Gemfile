@@ -70,3 +70,6 @@ gem 'refile-mini_magick'
 gem 'kaminari'
 gem 'dotenv-rails'
 gem 'rubocop-airbnb'
+group :production do
+  gem 'mysql2'
+end

@@ -30469,3 +30469,123 @@ Processing by Admin::GenresController#destroy as JS
 Completed 200 OK in 42ms (Views: 26.5ms | ActiveRecord: 6.2ms)
 
 
+Started GET "/" for 124.25.12.195 at 2021-12-17 13:58:51 +0000
+Cannot render console from 124.25.12.195! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by Public::HomesController#top as HTML
+  Rendering public/homes/top.html.erb within layouts/application
+  [1m[36mGenre Load (0.2ms)[0m  [1m[34mSELECT "genres".* FROM "genres"[0m
+  ↳ app/views/public/homes/_side_bar.html.erb:2
+  [1m[36mFoodName Load (0.2ms)[0m  [1m[34mSELECT "food_names".* FROM "food_names" INNER JOIN "foods" ON "food_names"."id" = "foods"."food_name_id" WHERE "foods"."genre_id" = ?[0m  [["genre_id", 1]]
+  ↳ app/views/public/homes/_side_bar.html.erb:4
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT "food_names".* FROM "food_names" INNER JOIN "foods" ON "food_names"."id" = "foods"."food_name_id" WHERE "foods"."genre_id" = ?[0m  [["genre_id", 2]]
+  ↳ app/views/public/homes/_side_bar.html.erb:4
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT "food_names".* FROM "food_names" INNER JOIN "foods" ON "food_names"."id" = "foods"."food_name_id" WHERE "foods"."genre_id" = ?[0m  [["genre_id", 3]]
+  ↳ app/views/public/homes/_side_bar.html.erb:4
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT "food_names".* FROM "food_names" INNER JOIN "foods" ON "food_names"."id" = "foods"."food_name_id" WHERE "foods"."genre_id" = ?[0m  [["genre_id", 4]]
+  ↳ app/views/public/homes/_side_bar.html.erb:4
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT "food_names".* FROM "food_names" INNER JOIN "foods" ON "food_names"."id" = "foods"."food_name_id" WHERE "foods"."genre_id" = ?[0m  [["genre_id", 5]]
+  ↳ app/views/public/homes/_side_bar.html.erb:4
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "foods" WHERE "foods"."food_name_id" = ?[0m  [["food_name_id", 3]]
+  ↳ app/views/public/homes/_side_bar.html.erb:5
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT "food_names".* FROM "food_names" INNER JOIN "foods" ON "food_names"."id" = "foods"."food_name_id" WHERE "foods"."genre_id" = ?[0m  [["genre_id", 6]]
+  ↳ app/views/public/homes/_side_bar.html.erb:4
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT "food_names".* FROM "food_names" INNER JOIN "foods" ON "food_names"."id" = "foods"."food_name_id" WHERE "foods"."genre_id" = ?[0m  [["genre_id", 7]]
+  ↳ app/views/public/homes/_side_bar.html.erb:4
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT "food_names".* FROM "food_names" INNER JOIN "foods" ON "food_names"."id" = "foods"."food_name_id" WHERE "foods"."genre_id" = ?[0m  [["genre_id", 8]]
+  ↳ app/views/public/homes/_side_bar.html.erb:4
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT "food_names".* FROM "food_names" INNER JOIN "foods" ON "food_names"."id" = "foods"."food_name_id" WHERE "foods"."genre_id" = ?[0m  [["genre_id", 9]]
+  ↳ app/views/public/homes/_side_bar.html.erb:4
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT "food_names".* FROM "food_names" INNER JOIN "foods" ON "food_names"."id" = "foods"."food_name_id" WHERE "foods"."genre_id" = ?[0m  [["genre_id", 10]]
+  ↳ app/views/public/homes/_side_bar.html.erb:4
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT "food_names".* FROM "food_names" INNER JOIN "foods" ON "food_names"."id" = "foods"."food_name_id" WHERE "foods"."genre_id" = ?[0m  [["genre_id", 11]]
+  ↳ app/views/public/homes/_side_bar.html.erb:4
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "foods" WHERE "foods"."food_name_id" = ?[0m  [["food_name_id", 2]]
+  ↳ app/views/public/homes/_side_bar.html.erb:5
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "foods" WHERE "foods"."food_name_id" = ?[0m  [["food_name_id", 3]]
+  ↳ app/views/public/homes/_side_bar.html.erb:5
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "foods" WHERE "foods"."food_name_id" = ?[0m  [["food_name_id", 3]]
+  ↳ app/views/public/homes/_side_bar.html.erb:5
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "foods" WHERE "foods"."food_name_id" = ?[0m  [["food_name_id", 3]]
+  ↳ app/views/public/homes/_side_bar.html.erb:5
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "foods" WHERE "foods"."food_name_id" = ?[0m  [["food_name_id", 3]]
+  ↳ app/views/public/homes/_side_bar.html.erb:5
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "foods" WHERE "foods"."food_name_id" = ?[0m  [["food_name_id", 4]]
+  ↳ app/views/public/homes/_side_bar.html.erb:5
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT "food_names".* FROM "food_names" INNER JOIN "foods" ON "food_names"."id" = "foods"."food_name_id" WHERE "foods"."genre_id" = ?[0m  [["genre_id", 12]]
+  ↳ app/views/public/homes/_side_bar.html.erb:4
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT "food_names".* FROM "food_names" INNER JOIN "foods" ON "food_names"."id" = "foods"."food_name_id" WHERE "foods"."genre_id" = ?[0m  [["genre_id", 13]]
+  ↳ app/views/public/homes/_side_bar.html.erb:4
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT "food_names".* FROM "food_names" INNER JOIN "foods" ON "food_names"."id" = "foods"."food_name_id" WHERE "foods"."genre_id" = ?[0m  [["genre_id", 14]]
+  ↳ app/views/public/homes/_side_bar.html.erb:4
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT "food_names".* FROM "food_names" INNER JOIN "foods" ON "food_names"."id" = "foods"."food_name_id" WHERE "foods"."genre_id" = ?[0m  [["genre_id", 15]]
+  ↳ app/views/public/homes/_side_bar.html.erb:4
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT "food_names".* FROM "food_names" INNER JOIN "foods" ON "food_names"."id" = "foods"."food_name_id" WHERE "foods"."genre_id" = ?[0m  [["genre_id", 22]]
+  ↳ app/views/public/homes/_side_bar.html.erb:4
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT "food_names".* FROM "food_names" INNER JOIN "foods" ON "food_names"."id" = "foods"."food_name_id" WHERE "foods"."genre_id" = ?[0m  [["genre_id", 23]]
+  ↳ app/views/public/homes/_side_bar.html.erb:4
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT "food_names".* FROM "food_names" INNER JOIN "foods" ON "food_names"."id" = "foods"."food_name_id" WHERE "foods"."genre_id" = ?[0m  [["genre_id", 24]]
+  ↳ app/views/public/homes/_side_bar.html.erb:4
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT "food_names".* FROM "food_names" INNER JOIN "foods" ON "food_names"."id" = "foods"."food_name_id" WHERE "foods"."genre_id" = ?[0m  [["genre_id", 25]]
+  ↳ app/views/public/homes/_side_bar.html.erb:4
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT "food_names".* FROM "food_names" INNER JOIN "foods" ON "food_names"."id" = "foods"."food_name_id" WHERE "foods"."genre_id" = ?[0m  [["genre_id", 26]]
+  ↳ app/views/public/homes/_side_bar.html.erb:4
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT "food_names".* FROM "food_names" INNER JOIN "foods" ON "food_names"."id" = "foods"."food_name_id" WHERE "foods"."genre_id" = ?[0m  [["genre_id", 27]]
+  ↳ app/views/public/homes/_side_bar.html.erb:4
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT "food_names".* FROM "food_names" INNER JOIN "foods" ON "food_names"."id" = "foods"."food_name_id" WHERE "foods"."genre_id" = ?[0m  [["genre_id", 28]]
+  ↳ app/views/public/homes/_side_bar.html.erb:4
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT "food_names".* FROM "food_names" INNER JOIN "foods" ON "food_names"."id" = "foods"."food_name_id" WHERE "foods"."genre_id" = ?[0m  [["genre_id", 29]]
+  ↳ app/views/public/homes/_side_bar.html.erb:4
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT "food_names".* FROM "food_names" INNER JOIN "foods" ON "food_names"."id" = "foods"."food_name_id" WHERE "foods"."genre_id" = ?[0m  [["genre_id", 30]]
+  ↳ app/views/public/homes/_side_bar.html.erb:4
+  Rendered public/homes/_side_bar.html.erb (148.7ms)
+  [1m[36mFood Load (0.2ms)[0m  [1m[34mSELECT  "foods".* FROM "foods" ORDER BY "foods"."created_at" DESC LIMIT ?[0m  [["LIMIT", 3]]
+  ↳ app/views/public/homes/top.html.erb:11
+  [1m[36mFoodName Load (0.2ms)[0m  [1m[34mSELECT  "food_names".* FROM "food_names" WHERE "food_names"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/public/homes/top.html.erb:12
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT AVG("foods"."rate") FROM "foods" WHERE "foods"."food_name_id" = ?[0m  [["food_name_id", 4]]
+  ↳ app/views/public/homes/top.html.erb:13
+  [1m[36mFoodName Load (0.1ms)[0m  [1m[34mSELECT  "food_names".* FROM "food_names" WHERE "food_names"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/public/homes/top.html.erb:12
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT AVG("foods"."rate") FROM "foods" WHERE "foods"."food_name_id" = ?[0m  [["food_name_id", 3]]
+  ↳ app/views/public/homes/top.html.erb:13
+  [1m[36mCACHE FoodName Load (0.0ms)[0m  [1m[34mSELECT  "food_names".* FROM "food_names" WHERE "food_names"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/public/homes/top.html.erb:12
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT AVG("foods"."rate") FROM "foods" WHERE "foods"."food_name_id" = ?[0m  [["food_name_id", 3]]
+  ↳ app/views/public/homes/top.html.erb:13
+  Rendered public/homes/top.html.erb within layouts/application (188.8ms)
+Completed 200 OK in 1859ms (Views: 1829.4ms | ActiveRecord: 5.3ms)
+
+
+Started GET "/searchs?utf8=%E2%9C%93&word=%E3%83%A4%E3%82%AF%E3%83%AB%E3%83%88&id=name&commit=Save+" for 124.25.12.195 at 2021-12-17 13:59:34 +0000
+Cannot render console from 124.25.12.195! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Public::SearchsController#search as HTML
+  Parameters: {"utf8"=>"✓", "word"=>"ヤクルト", "id"=>"name", "commit"=>"Save "}
+  [1m[36mFoodName Load (0.2ms)[0m  [1m[34mSELECT "food_names".* FROM "food_names" WHERE (name LIKE '%ヤクルト%') ORDER BY "food_names"."created_at" DESC[0m
+  ↳ app/controllers/public/searchs_controller.rb:7
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "foods" WHERE "foods"."food_name_id" = ?[0m  [["food_name_id", 2]]
+  ↳ app/controllers/public/searchs_controller.rb:8
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "foods" WHERE "foods"."food_name_id" = ?[0m  [["food_name_id", 1]]
+  ↳ app/controllers/public/searchs_controller.rb:8
+  Rendering public/searchs/search.html.erb within layouts/application
+  [1m[36mFood Load (0.1ms)[0m  [1m[34mSELECT "foods".* FROM "foods" WHERE "foods"."food_name_id" = ?[0m  [["food_name_id", 2]]
+  ↳ app/views/public/searchs/search.html.erb:8
+  Rendered public/favorites/_favorite.html.erb (18.0ms)
+  Rendered public/foods/_food.html.erb (52.5ms)
+  Rendered public/searchs/search.html.erb within layouts/application (57.5ms)
+Completed 500 Internal Server Error in 71ms (ActiveRecord: 0.6ms)
+
+
+  
+ActionView::Template::Error (undefined method `id' for nil:NilClass):
+    1: <% if Favorite.find_by(food_id: food.id, user_id: current_user.id).present? %>
+    2:   <td><%= link_to favorite_path(id: food.id), method: :delete, remote: true do %>★<% end %></td>
+    3: <% else %>
+    4:   <td><%= link_to favorites_path(id: food.id), method: :post, remote: true do %>☆<% end %></td>
+  
+app/views/public/favorites/_favorite.html.erb:1:in `_app_views_public_favorites__favorite_html_erb__1356290075294787253_20678720'
+app/views/public/foods/_food.html.erb:4:in `_app_views_public_foods__food_html_erb___3466704272782824793_70196678404400'
+app/views/public/searchs/search.html.erb:10:in `block (2 levels) in _app_views_public_searchs_search_html_erb__31902505617980805_70196678341880'
+app/views/public/searchs/search.html.erb:8:in `block in _app_views_public_searchs_search_html_erb__31902505617980805_70196678341880'
+app/views/public/searchs/search.html.erb:4:in `_app_views_public_searchs_search_html_erb__31902505617980805_70196678341880'
