@@ -14,6 +14,13 @@ Genre.create!(
         { name: '調味料 [加工食品]' },
         { name: '食用油 [加工食品]' },
         { name: '飲料水[加工食品]' },
-        { name: 'その他' },
+        { name: 'その他' }
+    ]
+)
+User.create!(
+    [
+        { name: 'Test_User_1', password: ENV['TEST_USER_PASSWORD'] },
+        { name: 'Test_User_2', password: ENV['TEST_USER_PASSWORD'] },
+        { name: 'Test_User_3', password: ENV['TEST_USER_PASSWORD'] }
     ]
 )
