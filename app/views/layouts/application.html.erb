@@ -10,6 +10,15 @@
   </head>
 
   <body>
+    <header>
+      <%= link_to "Log_out", destroy_user_session_path, method: :delete %>
+      <%= link_to "Log_in",  new_user_session_path %>
+      <%= form_with url: '/searchs', method: :get, local: true do |f| %>
+      <%= f.text_field :word, placeholder:"検索ワード" %>
+      <%= f.select :id, { '名前': 'name', '成分名': 'compound', '機能': 'function' }, { include_blank: '選択してください' }, { class: 'form-control', required: true } %>
+      <%= f.submit %>
+      <% end %>
+    </header>
     <%= yield %>
   </body>
 </html>

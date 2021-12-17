@@ -1,0 +1,8 @@
+<div class="side_bar">
+  <% Genre.all.each do |genre| %>
+    <%= genre.name %><br>
+    <% genre.genre_food_names.each do |food_name| %>
+      <div class="ml-2 small"><%= food_name.name %>( <%= food_name.foods.count %> )<br></div> <%# link_to name->search %>
+    <% end %>
+  <% end %>
+</div>

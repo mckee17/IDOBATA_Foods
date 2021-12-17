@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+
+    <h2>新規投稿</h2>
+    <div class="form">
+      <%= form_with model: @food do |f| %>
+        <%= fields_for @food_name do |name| %>
+          <%= name.text_field :name, list: 'food_name_list', placeholder:"食品名" %>
+          <datalist id='food_name_list'>
+            <% FoodName.all.each do |n| %>
+            <option value=<%= n.name %>>
+            <% end %>
+          </datalist>
+        <% end %>
+        <%= fields_for @compound do |compound| %>
+          <%= compound.text_field :name, list: 'compound_list', placeholder:"成分名" %>
+          <datalist id='compound_list'>
+            <% Compound.all.each do |c| %>
+            <option value=<%= c.name %>>
+            <% end %>
+          </datalist>
+        <% end %>
+        <%= f.text_field :function, placeholder:"機能" %>
+        <%= f.text_area :comment, placeholder:"コメント" %>
+        <%= f.collection_select(:genre_id, Genre.all, :id, :name) %>
+        <%# ratyあとで %>
+        <%= f.number_field :rate, placeholder:"rate" %>
+        <%= f.submit %>
+      <% end %>
+
+    </div>
+  </div>
+</div>
