@@ -1,0 +1,17 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>ジャンル一覧</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% genres.each do |g| %>
+    <tr>
+      <td><%= g.name %></td>
+      <td><%= link_to '編集', edit_admin_genre_path(g) %></td>
+      <td><%= link_to '削除', admin_genre_path(g), method: :delete, remote: true %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="h2 col-12">検索結果(全<%= @search_count %>件)</div>
+    <% @search_names.each do |name| %>
+      <div class="h5 mt-3 food_name">【食品名】<%= name.name %></div>
+      <% @search_foods = name.foods if (params[:id] == "name") %> <%# name_search -> foods %>
+      <% @search_foods.each do |food| %>
+        <% if food.food_name == name %>
+        <%= render partial: 'public/foods/food', locals:{ food: food } %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

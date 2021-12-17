@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <h2>フォロー一覧</h2>
+    <div class="table">
+      <table>
+        <thead>
+          <tr>
+            <th>名前</th>
+            <th>投稿数</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @followed.each do |f| %>
+          <tr>
+          <td><%= f.name %></td>
+          <td>( <%= Food.where(user_id: f.id).count %> )</td>
+          <td><%= link_to "フォローを外す", relationships_path(id: f.id), method: :delete, class: "btn btn-sm btn-secondary" %></td>
+          <td><%= link_to ">>", foods_path(id: :followed, user: f.id) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
