@@ -19,6 +19,7 @@
 
 <script>
 <% @food_names.each do |name| %>
+  $('#food_name_rate_<%= name.id %>').empty();
   $('#food_name_rate_<%= name.id %>').raty({
     readOnly: true,
     score: function(){

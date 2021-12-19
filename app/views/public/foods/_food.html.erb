@@ -18,6 +18,7 @@
 </div>
 
 <script>
+  $('#food_rate_<%= food.id %>').empty();
   $('#food_rate_<%= food.id %>').raty({
     readOnly: true,
     score: function(){

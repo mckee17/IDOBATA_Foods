@@ -5,19 +5,30 @@
     </div>
 
     <div class="col-9">
-      <h2>人気順</2>
-      <%#= 人気の定義を要検討 %>
       <h2>新着順</h2>
+      <div class="row mt-4">
       <% @new.each do |new| %>
-        <%= new.food_name.name %>
-      <dvi id="food_rate_<%= new.id %>" rate-score="<%= Food.where(food_name_id: new.food_name_id).average(:rate).round(1) %>"></dvi>
+        <div class="card col-3 p-0 mx-3 text-center bg-light">
+          <div class="card-header">
+            <%= link_to food_name_path(new.food_name) do %>
+              <span class="h5"><%= new.food_name.name %></span>
+            <% end %>
+          </div>
+          <div class="card-body">
+            <p class="card-title font-weight-bold"><%= new.compound.name %></p>
+            <p class="card-text"><%= new.function %></p>
+            <dvi id="food_rate_<%= new.id %>" rate-score="<%= new.rate %>"></dvi>
+          </div>
+        </div>
       <% end %>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
 <% @new.each do |new| %>
+  $('#food_rate_<%= new.id %>').empty();
   $('#food_rate_<%= new.id %>').raty({
     readOnly: true,
     score: function(){
