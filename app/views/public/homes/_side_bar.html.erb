@@ -2,7 +2,11 @@
   <% Genre.all.each do |genre| %>
     <%= genre.name %><br>
     <% FoodName.where(id: genre.genre_food_names.select(:id).distinct).each do |name| %>
-      <div class="ml-2 small"><%= name.name %>( <%= name.foods.count %> )<br></div> <%# link_to name->search %>
+      <div class="ml-2 small">
+        <%= link_to food_name_path(name) do %>
+          <%= name.name %>( <%= name.foods.count %> )
+        <% end %><br>
+      </div>
     <% end %>
   <% end %>
 </div>

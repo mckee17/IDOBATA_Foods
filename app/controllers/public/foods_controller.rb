@@ -14,7 +14,7 @@ class Public::FoodsController < ApplicationController
       else
         @foods = Food.all
     end
-    @food_names = @foods.of_food_names
+    @food_names = @foods.of_food_name_list
   end
 
   def new

@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="h2 col-12">詳細画面</div>
+      <div class="mt-3 food_name">
+        <span class="h5">【食品名】<%= @food_name.name %></span>
+        <span id="food_name_rate_<%= @food_name.id %>" rate-score="<%= @food_name.average_rate %>" class="ml-4"></span>
+      </div>
+      <% @foods.each do |food| %>
+        <%= render partial: 'public/foods/food', locals:{ food: food } %>
+      <% end %>
+  </div>
+</div>
+
+<script>
+  $('#food_name_rate_<%= @food_name.id %>').raty({
+    readOnly: true,
+    score: function(){
+      return $(this).attr('rate-score');
+    },
+    path: '/assets/'
+  });
+</script>
