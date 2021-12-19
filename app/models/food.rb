@@ -12,5 +12,4 @@ class Food < ApplicationRecord
         end
         return food_names
     end
-
 end

@@ -8,10 +8,22 @@
       <h2>人気順</2>
       <%#= 人気の定義を要検討 %>
       <h2>新着順</h2>
-      <% @new.each do |n| %>
-        <%= n.food_name.name %>
-        <%= Food.where(food_name_id: n.food_name_id).average(:rate).round(1) %>
+      <% @new.each do |new| %>
+        <%= new.food_name.name %>
+      <dvi id="food_rate_<%= new.id %>" rate-score="<%= Food.where(food_name_id: new.food_name_id).average(:rate).round(1) %>"></dvi>
       <% end %>
     </div>
   </div>
 </div>
+
+<script>
+<% @new.each do |new| %>
+  $('#food_rate_<%= new.id %>').raty({
+    readOnly: true,
+    score: function(){
+      return $(this).attr('rate-score');
+    },
+    path: '/assets/'
+  });
+<% end %>
+</script>

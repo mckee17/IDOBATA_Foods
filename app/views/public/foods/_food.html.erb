@@ -4,7 +4,7 @@
         <tr id="favorite_<%= food.id %>"><%= render partial: 'public/favorites/favorite', locals:{ food: food } %></tr>
         <tr><td>【成分名】<%= food.compound.name %></td><td>【効能】<%= food.function %></td></tr>
         <tr><td><%= food.comment %></td></tr>
-        <tr><td><%= food.rate %></td><td><%= food.user.name %></td>
+        <tr><td id="food_rate_<%= food.id %>" rate-score="<%= food.rate %>"></td><td><%= food.user.name %></td>
             <td id="relationship_<%= food.id %>"><%= render partial: 'public/relationships/relationship', locals:{ food: food } %></td>
             <td><%= food.created_at.strftime("%Y/%m/%d") %></td>
         </tr>
@@ -16,3 +16,13 @@
     </tbody>
   </table>
 </div>
+
+<script>
+  $('#food_rate_<%= food.id %>').raty({
+    readOnly: true,
+    score: function(){
+      return $(this).attr('rate-score');
+    },
+    path: '/assets/'
+  });
+</script>
