@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_10_162734) do
+ActiveRecord::Schema.define(version: 2021_12_19_201717) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2021_12_10_162734) do
     t.string "function", null: false
     t.text "comment"
     t.float "rate", null: false
-    t.string "profile_image_id"
+    t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "compound_id", null: false

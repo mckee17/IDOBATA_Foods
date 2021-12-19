@@ -74,7 +74,7 @@ class Public::FoodsController < ApplicationController
   private
 
   def food_params
-    params.require(:food).permit(:function, :comment, :rate, :profile_image, :food_name_id, :genre_id, :user_id, :compound_id)
+    params.require(:food).permit(:function, :comment, :rate, :image, :food_name_id, :genre_id, :user_id, :compound_id)
   end
   def food_name_params
     params.require(:food_name).permit(:name)

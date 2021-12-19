@@ -1,11 +1,20 @@
 <div class="container">
   <div class="row">
 
-    <h2>新規投稿</h2>
-    <div class="form">
+    <div class="h2 col-12 mt-3">新規投稿</div>
+    <div class="form offset-md-1">
       <%= form_with model: @food do |f| %>
+        <div class="input-group my-3">
+          <div class="custom-file">
+            <%= f.attachment_field :image, class: "custom-file-input", id: "customFile" %>
+            <label class="custom-file-label" for="customFile" data-browse="参照">ファイル選択...</label>
+          </div>
+          <div class="input-group-append">
+            <button type="button" class="btn btn-outline-danger reset">取消</button>
+          </div>
+        </div>
         <%= fields_for @food_name do |name| %>
-          <%= name.text_field :name, list: 'food_name_list', placeholder:"食品名" %>
+          <%= name.text_field :name, list: 'food_name_list', placeholder:"食品名", class: "form-control my-3" %>
           <datalist id='food_name_list'>
             <% FoodName.all.each do |n| %>
             <option value=<%= n.name %>>
@@ -13,18 +22,18 @@
           </datalist>
         <% end %>
         <%= fields_for @compound do |compound| %>
-          <%= compound.text_field :name, list: 'compound_list', placeholder:"成分名" %>
+          <%= compound.text_field :name, list: 'compound_list', placeholder:"成分名", class: "form-control my-3" %>
           <datalist id='compound_list'>
             <% Compound.all.each do |c| %>
             <option value=<%= c.name %>>
             <% end %>
           </datalist>
         <% end %>
-        <%= f.text_field :function, placeholder:"機能" %>
-        <%= f.text_area :comment, placeholder:"コメント" %>
-        <%= f.collection_select(:genre_id, Genre.all, :id, :name) %>
-        <div id="food_rate"><label>評価</label></div>
-        <%= f.submit %>
+        <%= f.text_field :function, placeholder:"機能", class: "form-control my-3" %>
+        <%= f.text_area :comment, placeholder:"コメント", class: "form-control my-3" %>
+        <%= f.collection_select(:genre_id, Genre.all, :id, :name, {}, class: "form-control my-3") %>
+        <div id="food_rate"></div>
+        <%= f.submit "登録", class: "form-control my-3" %>
       <% end %>
     </div>
   </div>
@@ -36,5 +45,12 @@
     starOff: "<%= asset_path('star-off.png') %>",
     starHalf: "<%= asset_path('star-half.png') %>",
     scoreName: 'food[rate]'
+  });
+  $('.custom-file-input').on('change',function(){
+  $(this).next('.custom-file-label').html($(this)[0].files[0].name);
+  });
+  $('.reset').click(function(){
+  $(this).parent().prev().children('.custom-file-label').html('ファイル選択...');
+  $('.custom-file-input').val('');
   });
 </script>

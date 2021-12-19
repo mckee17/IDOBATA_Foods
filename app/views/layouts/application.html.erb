@@ -63,7 +63,7 @@
               <div class="form col-12 my-5">
                 <%= form_with url: '/searchs', method: :get, local: true do |f| %>
                   <%= f.text_field :word, class: "form-control col-6 offset-md-1", style:"display: inline-block;", placeholder:"検索ワード" %>
-                  <%= f.select :id, { '名前': 'name', '成分名': 'compound', '機能': 'function' }, { include_blank: '選択してください' }, { class: 'form-control col-3', style:"display: inline-block;", required: true } %>
+                  <%= f.select :id, { '食品名': 'name', '成分名': 'compound', '機能': 'function' }, { include_blank: '選択してください' }, { class: 'form-control col-3', style:"display: inline-block;", required: true } %>
                   <%= f.submit "検索", class: "form-control col-1", style:"display: inline-block;" %>
                 <% end %>
               </div>

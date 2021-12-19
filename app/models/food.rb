@@ -4,6 +4,7 @@ class Food < ApplicationRecord
     belongs_to :user, optional: true
     belongs_to :compound
     has_many :favorites, dependent: :destroy
+    attachment :image
 
     def self.of_food_name_list
         food_names = []
