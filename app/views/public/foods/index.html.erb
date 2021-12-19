@@ -15,8 +15,6 @@
   </div>
 </div>
 
-<%= link_to "お気に入り", foods_path(id: :favorite) %>
-
 <script>
 <% @food_names.each do |name| %>
   $('#food_name_rate_<%= name.id %>').empty();
