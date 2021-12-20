@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
-    <div class="col-3">
+    <div class="col-3 mt-5">
       <%= render partial: 'side_bar' %>
     </div>
 
     <div class="col-9">
-      <h2>新着順</h2>
+      <div class="h2 col-12 mt-3">新着順</div>
       <div class="row mt-4">
       <% @new.each do |new| %>
         <div class="card col-3 p-0 mx-3 text-center bg-light">

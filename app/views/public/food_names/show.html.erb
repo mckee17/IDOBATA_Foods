@@ -1,13 +1,19 @@
 <div class="container">
   <div class="row">
-    <div class="h2 col-12">詳細画面</div>
-      <div class="mt-3 food_name">
-        <span class="h5">【食品名】<%= @food_name.name %></span>
-        <span id="food_name_rate_<%= @food_name.id %>" rate-score="<%= @food_name.average_rate %>" class="ml-4"></span>
-      </div>
-      <% @foods.each do |food| %>
-        <%= render partial: 'public/foods/food', locals:{ food: food } %>
-      <% end %>
+    <div class="col-3 mt-5">
+      <%= render partial: '/public/homes/side_bar' %>
+    </div>
+
+    <div class="col-9">
+      <div class="h2 col-12 mt-3">詳細画面</div>
+        <div class="mt-4 food_name offset-md-1">
+          <span class="h5">【食品名】<%= @food_name.name %></span>
+          <span id="food_name_rate_<%= @food_name.id %>" rate-score="<%= @food_name.average_rate %>" class="ml-4"></span>
+        </div>
+        <% @foods.each do |food| %>
+          <%= render partial: 'public/foods/food', locals:{ food: food } %>
+        <% end %>
+    </div>
   </div>
 </div>
 

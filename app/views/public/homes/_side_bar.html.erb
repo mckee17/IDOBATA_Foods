@@ -1,11 +1,11 @@
 <div class="side_bar">
   <% Genre.all.each do |genre| %>
-    <%= genre.name %><br>
+    <div class="h5 mb-0 mt-1"><%= genre.name %></div>
     <% FoodName.where(id: genre.genre_food_names.select(:id).distinct).each do |name| %>
-      <div class="ml-2 small">
+      <div class="ml-2 h6 mb-0 mt-1">
         <%= link_to food_name_path(name) do %>
           <%= name.name %>( <%= name.foods.count %> )
-        <% end %><br>
+        <% end %>
       </div>
     <% end %>
   <% end %>

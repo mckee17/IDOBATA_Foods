@@ -1,20 +1,34 @@
-<div class="table">
-  <table>
-    <tbody>
-        <tr id="favorite_<%= food.id %>"><%= render partial: 'public/favorites/favorite', locals:{ food: food } %></tr>
-        <tr><td>【成分名】<%= food.compound.name %></td><td>【効能】<%= food.function %></td></tr>
-        <tr><td><%= food.comment %></td></tr>
-        <tr><td id="food_rate_<%= food.id %>" rate-score="<%= food.rate %>"></td><td><%= food.user.name %></td>
-            <td id="relationship_<%= food.id %>"><%= render partial: 'public/relationships/relationship', locals:{ food: food } %></td>
-            <td><%= food.created_at.strftime("%Y/%m/%d") %></td>
-        </tr>
-      <% if food.user_id == current_user.id %>
-        <tr><td><%= link_to "編集", edit_food_path(food) %></td>
-          <td><%= link_to "削除", food_path(food), method: :delete %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<div class="card mt-5 offset-md-1" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-3">
+      <%= attachment_image_tag food, :image, :fill, 134, 134 %>
+    </div>
+    <div class="col-9">
+      <div class="card-body">
+        <div class="text-right">
+          <% if user_signed_in? %>
+          <span id="favorite_<%= food.id %>"><%= render partial: 'public/favorites/favorite', locals:{ food: food } %></span>
+          <% end %>
+        </div>
+        <div class="card-title h5"><%= food.compound.name %></div>
+        <div class="card-text my-3">【効能】<%= food.function %></div>
+        <div class="card-text my-3"><%= food.comment %></div>
+        <div class="card-text">
+          <span id="food_rate_<%= food.id %>" rate-score="<%= food.rate %>"></span>
+        </div>
+        <div class="card-text small text-muted text-right">
+          <% if user_signed_in? && (food.user_id == current_user.id) %>
+            <%= link_to "編集", edit_food_path(food) , class: "btn btn-sm btn-success"%>
+            <%= link_to "削除", food_path(food), method: :delete, class: "btn btn-sm btn-danger" %>
+          <% elsif user_signed_in? && !(food.user_id == current_user.id)%>
+            <span id="relationship_<%= food.id %>"><%= render partial: 'public/relationships/relationship', locals:{ food: food } %></span>
+            <span ><%= food.user.name %></span>
+          <% end %>
+          <span><%= food.created_at.strftime("%Y/%m/%d") %></span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
