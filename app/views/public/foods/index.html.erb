@@ -1,29 +1,19 @@
 <div class="container">
   <div class="row">
-    <div class="h2 col-12">一覧画面</div>
-    <% @food_names.each do |name| %>
-      <div class="mt-3 food_name">
-        <span class="h5">【食品名】<%= name.name %></span>
-        <span id="food_name_rate_<%= name.id %>" rate-score="<%= name.average_rate %>" class="ml-4"></span>
-      </div>
-      <% @foods.each do |food| %>
-        <% if food.food_name == name %>
-        <%= render partial: 'public/foods/food', locals:{ food: food } %>
+    <div class="col-3 mt-5">
+      <%= render partial: '/public/homes/side_bar' %>
+    </div>
+
+    <div class="col-9">
+      <div class="h2 col-12 mt-3">一覧画面</div>
+      <% @food_names.each do |name| %>
+        <%= render partial: 'public/food_names/food_name', locals:{ food_name: name } %>
+        <% @foods.each do |food| %>
+          <% if food.food_name == name %>
+            <%= render partial: 'public/foods/food', locals:{ food: food } %>
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>
-
-<script>
-<% @food_names.each do |name| %>
-  $('#food_name_rate_<%= name.id %>').empty();
-  $('#food_name_rate_<%= name.id %>').raty({
-    readOnly: true,
-    score: function(){
-      return $(this).attr('rate-score');
-    },
-    path: '/assets/'
-  });
-<% end %>
-</script>
