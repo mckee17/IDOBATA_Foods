@@ -6,24 +6,10 @@
 
     <div class="col-9">
       <div class="h2 col-12 mt-3">詳細画面</div>
-        <div class="mt-4 food_name offset-md-1">
-          <span class="h5">【食品名】<%= @food_name.name %></span>
-          <span id="food_name_rate_<%= @food_name.id %>" rate-score="<%= @food_name.average_rate %>" class="ml-4"></span>
-        </div>
+        <%= render partial: 'public/food_names/food_name', locals:{ food_name: @food_name } %>
         <% @foods.each do |food| %>
           <%= render partial: 'public/foods/food', locals:{ food: food } %>
         <% end %>
     </div>
   </div>
 </div>
-
-<script>
-  $('#food_name_rate_<%= @food_name.id %>').empty();
-  $('#food_name_rate_<%= @food_name.id %>').raty({
-    readOnly: true,
-    score: function(){
-      return $(this).attr('rate-score');
-    },
-    path: '/assets/'
-  });
-</script>

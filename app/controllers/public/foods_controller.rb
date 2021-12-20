@@ -1,6 +1,7 @@
 class Public::FoodsController < ApplicationController
   def show
     @food = Food.find(params[:id])
+    @food_name = @food.food_name
   end
 
   def index

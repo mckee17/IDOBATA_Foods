@@ -21,7 +21,7 @@
             <%= link_to "編集", edit_food_path(food) , class: "btn btn-sm btn-success"%>
             <%= link_to "削除", food_path(food), method: :delete, class: "btn btn-sm btn-danger" %>
           <% elsif user_signed_in? && !(food.user_id == current_user.id)%>
-            <span id="relationship_<%= food.id %>"><%= render partial: 'public/relationships/relationship', locals:{ food: food } %></span>
+            <span class="relationship_<%= food.user_id %>"><%= render partial: 'public/relationships/relationship', locals:{ food: food } %></span>
             <span ><%= food.user.name %></span>
           <% end %>
           <span><%= food.created_at.strftime("%Y/%m/%d") %></span>
