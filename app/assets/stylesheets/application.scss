@@ -14,9 +14,12 @@
  *= require_self
  */
 @import "bootstrap";
-/*@import 'font-awesome-sprockets';
-@import 'font-awesome';
-*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Noto+Sans+JP&display=swap');
+
+body{
+  background-color: #F4F5F7;
+}
 
 .side_bar{
   height: 550px;
@@ -35,6 +38,13 @@
 
 a{
   color: black;
+}
+
+.h2,.h5,.h6,table{
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.nav-item,.small{
+  font-family: 'Kosugi Maru', sans-serif;
 }
 
 .custom-file {

@@ -1,21 +1,19 @@
 <div class="container">
   <div class="row">
-    <div class="col-3 mt-5">
-      <%= render partial: '/public/homes/side_bar' %>
-    </div>
-
-    <div class="col-9">
-    <div class="h2 col-12 mt-3">検索結果<span class="h4 ml-1">(全<%= @search_count %>件)</span></div>
-    <% @search_names.each do |name| %>
-      <%= render partial: 'public/food_names/food_name', locals:{ food_name: name } %>
-      <a role="button" data-toggle="collapse" href="#collapse_food_name<%= name.id %>" aria-expanded="false" aria-controls="collapse_food_name<%= name.id %>">
-        <span class="collapse_food">▼</span>
-      </a>
-      <% @search_foods.each do |food| %>
-        <% if food.food_name == name %>
-          <div class="collapse" id="collapse_food_name<%= name.id %>"><%= render partial: 'public/foods/food', locals:{ food: food } %></div>
+    <div class="col-12 col-lg-9 order-lg-2">
+      <div class="h2 col-12 mt-3">検索結果<span class="h4 ml-1">(全<%= @search_count %>件)</span></div>
+      <% @search_names.each do |name| %>
+        <%= render partial: 'public/food_names/food_name', locals:{ food_name: name } %>
+        <a role="button" data-toggle="collapse" href="#collapse_food_name<%= name.id %>" aria-expanded="false" aria-controls="collapse_food_name<%= name.id %>">
+          <span class="collapse_food">▼</span>
+        </a>
+        <% @search_foods.each do |food| %>
+          <% if food.food_name == name %>
+            <div class="collapse" id="collapse_food_name<%= name.id %>"><%= render partial: 'public/foods/food', locals:{ food: food } %></div>
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
+    </div>
+    <%= render partial: '/public/homes/side_bar' %>
   </div>
 </div>

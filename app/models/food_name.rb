@@ -1,5 +1,6 @@
 class FoodName < ApplicationRecord
   has_many :foods, dependent: :destroy
+  has_many :food_genres, through: :foods, source: :genre
 
   validates :name, presence: true, uniqueness: true
 

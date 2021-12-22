@@ -11,7 +11,7 @@
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #a1d8e2;">
         <%= link_to "HOME", root_path %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -70,7 +70,7 @@
               <% end %>
             <% end %>
           </ul>
-          <button class="btn btn-sm btn-outline-info col-1 mx-2 my-1" type="button" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
+          <button class="btn btn-sm btn-outline-dark col-1 mx-2 my-1" type="button" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
             <i class="fas fa-search"></i>
           </button>
         </div>
@@ -89,6 +89,6 @@
           </div>
         </div>
     </header>
-    <%= yield %>
+    <div class="main"><%= yield %></div>
   </body>
 </html>

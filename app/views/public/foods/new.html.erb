@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
 
-    <div class="h2 col-12 mt-3">新規投稿</div>
-    <div class="form offset-md-1">
+    <div class="h2 col-12 mt-3 text-center">新規投稿</div>
+    <div class="form col-8 offset-2">
       <%= form_with model: @food do |f| %>
         <div class="input-group my-3">
           <div class="custom-file">
@@ -33,7 +33,7 @@
         <%= f.text_area :comment, placeholder:"コメント", class: "form-control my-3" %>
         <%= f.collection_select(:genre_id, Genre.all, :id, :name, {}, class: "form-control my-3") %>
         <div id="food_rate"></div>
-        <%= f.submit "登録", class: "form-control my-3" %>
+        <%= f.submit "登録", class: "btn btn-warning col-12 my-3" %>
       <% end %>
     </div>
   </div>

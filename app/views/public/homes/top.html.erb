@@ -1,10 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-3 mt-5">
-      <%= render partial: 'side_bar' %>
-    </div>
-
-    <div class="col-9">
+    <div class="col-12 col-lg-9 order-lg-2">
       <div class="h2 col-12 mt-3">新着順</div>
       <div class="row mt-4">
       <% @new.each do |new| %>
@@ -15,14 +11,15 @@
             <% end %>
           </div>
           <div class="card-body">
-            <p class="card-title font-weight-bold"><%= new.compound.name %></p>
-            <p class="card-text"><%= new.function %></p>
+            <p class="card-title h6 font-weight-bold"><%= new.compound.name %></p>
+            <p class="card-text h6"><%= new.function %></p>
             <dvi id="food_rate_<%= new.id %>" rate-score="<%= new.rate %>"></dvi>
           </div>
         </div>
       <% end %>
       </div>
     </div>
+    <%= render partial: 'side_bar' %>
   </div>
 </div>
 

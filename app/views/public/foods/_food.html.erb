@@ -1,17 +1,17 @@
-<div class="card mt-3 offset-md-1" style="max-width: 540px;">
+<div class="card bg-light mt-3 offset-md-1" style="max-width: 540px;">
   <div class="row no-gutters">
     <div class="col-3">
       <%= attachment_image_tag food, :image, :fill, 134, 134 %>
     </div>
     <div class="col-9">
-      <div class="card-body">
+      <div class="card-body pt-1 pr-1">
         <div class="text-right">
           <% if user_signed_in? %>
           <span id="favorite_<%= food.id %>"><%= render partial: 'public/favorites/favorite', locals:{ food: food } %></span>
           <% end %>
         </div>
         <div class="card-title h5"><%= food.compound.name %></div>
-        <div class="card-text my-3">【効能】<%= food.function %></div>
+        <div class="card-text my-3 h6">【効能】<%= food.function %></div>
         <div class="card-text my-3"><%= food.comment %></div>
         <div class="card-text">
           <span id="food_rate_<%= food.id %>" rate-score="<%= food.rate %>"></span>
@@ -21,10 +21,12 @@
             <%= link_to "編集", edit_food_path(food) , class: "btn btn-sm btn-success" %>
             <%= link_to "削除", food_path(food), method: :delete, class: "btn btn-sm btn-danger", data: { confirm: '削除しますか？' } %>
           <% elsif user_signed_in? && !(food.user_id == current_user.id) && food.user_id.present? %>
-            <span class="relationship_<%= food.user_id %>"><%= render partial: 'public/relationships/relationship', locals:{ food: food } %></span>
-            <span ><%= food.user.name %></span>
+            <span class="relationship_<%= food.user_id %>">
+              <%= render partial: 'public/relationships/relationship', locals:{ food: food } %>
+            </span>
+            <span><%= food.user.name %></span>
           <% end %>
-          <span><%= food.created_at.strftime("%Y/%m/%d") %></span>
+          <span class="mx-1"><%= food.created_at.strftime("%Y/%m/%d") %></span>
         </div>
       </div>
     </div>

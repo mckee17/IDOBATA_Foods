@@ -1,13 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="col-3 mt-5">
-      <%= render partial: '/public/homes/side_bar' %>
-    </div>
-
-    <div class="col-9">
+    <div class="col-12 col-lg-9 order-lg-2">
       <div class="h2 col-12 mt-3">詳細画面</div>
       <%= render partial: 'public/food_names/food_name', locals:{ food_name: @food_name } %>
       <%= render partial: 'public/foods/food', locals:{ food: @food } %>
     </div>
+      <%= render partial: '/public/homes/side_bar' %>
   </div>
 </div>

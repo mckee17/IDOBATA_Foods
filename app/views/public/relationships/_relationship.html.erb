@@ -1,5 +1,9 @@
 <% if Relationship.find_by(followed_id: food.user.id, follow_id: current_user.id).present? %>
-  <%= link_to "解除", relationship_path(id: food.id), method: :delete, remote: true, class: "btn btn-sm btn-danger" %>
+  <%= link_to relationship_path(id: food.id), method: :delete, remote: true, class: "btn btn-sm btn-danger" do %>
+    <i class="fas fa-user-tag"></i>
+  <% end %>
 <% elsif !( food.user_id == current_user.id) %>
-  <%= link_to "フォロー", relationships_path(id: food.id), method: :post, remote: true, class: "btn btn-sm btn-success" %>
+  <%= link_to relationships_path(id: food.id), method: :post, remote: true, class: "btn btn-sm btn-success" do %>
+    <span style="color: black;"><i class="fas fa-user-tag"></i></span>
+  <% end %>
 <% end %>
