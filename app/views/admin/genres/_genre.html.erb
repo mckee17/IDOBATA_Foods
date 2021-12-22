@@ -13,7 +13,7 @@
       <td><%= g.name %></td>
       <td></td>
       <td><%= link_to '編集', edit_admin_genre_path(g), class: "btn btn-sm btn-success" %></td>
-      <td><%= link_to '削除', admin_genre_path(g), method: :delete, remote: true, class: "btn btn-sm btn-danger" %></td>
+      <td><%= link_to '削除', admin_genre_path(g), method: :delete, remote: true, class: "btn btn-sm btn-danger", data: { confirm: '削除しますか？' } %></td>
     </tr>
     <% end %>
   </tbody>
