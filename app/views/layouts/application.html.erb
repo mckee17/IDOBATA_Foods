@@ -18,38 +18,56 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarToggler">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <li class="nav-item active mx-2 my-1">
-              <%= link_to new_food_path do %>
-              <i class="fas fa-plus-circle"></i>新規投稿
+            <% if admin_signed_in? %> <%# admin_navbar %>
+              <li class="nav-item mx-2 my-1">
+                <%= link_to foods_path do %>
+                  <i class="fas fa-list-ul"></i>投稿一覧
+                <% end %>
+              </li>
+              <li class="nav-item mx-2 my-1">
+                <%= link_to admin_genres_path do %>
+                  <i class="fas fa-edit"></i>ジャンル編集
+                <% end %>
+              </li>
+              <li class="nav-item mx-2 my-1">
+                <%= link_to destroy_admin_session_path, method: :delete do %>
+                <i class="far fa-user"></i>ログアウト
+                <% end %>
+              </li>
+            <% else %> <%# user_navbar %>
+              <li class="nav-item active mx-2 my-1">
+                <%= link_to new_food_path do %>
+                <i class="fas fa-plus-circle"></i>新規投稿
+                <% end %>
+              </li>
+              <% if user_signed_in? %>
+                <li class="nav-item mx-2 my-1">
+                  <%= link_to foods_path(id: :current) do %>
+                  <i class="fas fa-list-ul"></i>投稿履歴
+                  <% end %>
+                </li>
+                <li class="nav-item mx-2 my-1">
+                  <%= link_to foods_path(id: :favorite) do %>
+                  <i class="fas fa-tags"></i>お気に入り
+                  <% end %>
+                </li>
+                <li class="nav-item mx-2 my-1">
+                  <%= link_to followed_relationships_path do %>
+                  <i class="fas fa-user-tag"></i>フォロー一覧
+                  <% end %>
+                </li>
+                <li class="nav-item mx-2 my-1">
+                  <%= link_to destroy_user_session_path, method: :delete do %>
+                  <i class="far fa-user"></i>ログアウト
+                  <% end %>
+                </li>
+              <% else %>
+                <li class="nav-item mx-2 my-1">
+                  <%= link_to new_user_session_path do %>
+                  <i class="fas fa-user"></i>ログイン
+                  <% end %>
+                </li>
               <% end %>
-            </li>
-            <% if user_signed_in? %>
-            <li class="nav-item mx-2 my-1">
-              <%= link_to foods_path(id: :current) do %>
-              <i class="fas fa-list-ul"></i>投稿履歴
-              <% end %>
-            </li>
-            <li class="nav-item mx-2 my-1">
-              <%= link_to foods_path(id: :favorite) do %>
-              <i class="fas fa-tags"></i>お気に入り
-              <% end %>
-            </li>
-            <li class="nav-item mx-2 my-1">
-              <%= link_to followed_relationships_path do %>
-              <i class="fas fa-user-tag"></i>フォロー一覧
-              <% end %>
-            </li>
-            <li class="nav-item mx-2 my-1">
-              <%= link_to destroy_user_session_path, method: :delete do %>
-              <i class="far fa-user"></i>ログアウト
-              <% end %>
-            </li>
-            <% else %>
-            <li class="nav-item mx-2 my-1">
-              <%= link_to new_user_session_path do %>
-              <i class="fas fa-user"></i>ログイン
-              <% end %>
-            </li>
             <% end %>
           </ul>
           <button class="btn btn-sm btn-outline-info col-1 mx-2 my-1" type="button" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">

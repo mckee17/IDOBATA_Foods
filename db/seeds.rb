@@ -24,3 +24,7 @@ User.create!(
         { name: 'Test_User_3', password: ENV['TEST_USER_PASSWORD'] }
     ]
 )
+Admin.create!(
+    email: "admin@example.com",
+    password: ENV['ADMIN_PASSWORD']
+)

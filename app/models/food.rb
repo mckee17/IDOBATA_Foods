@@ -5,12 +5,10 @@ class Food < ApplicationRecord
   belongs_to :compound
   has_many :favorites, dependent: :destroy
   attachment :image
-
-  def self.of_food_name_list
-    food_names = []
-    self.select(:food_name_id).distinct.each do |f|
-      food_names << f.food_name
-    end
-    food_names
-  end
+  
+  validates :function, presence: true
+  validates :rate, presence: true
+  validates :compound_id, presence: true
+  validates :food_name_id, presence: true
+  validates :genre_id, presence: true
 end

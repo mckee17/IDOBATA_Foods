@@ -15,7 +15,7 @@ class Public::FoodsController < ApplicationController
     else
       @foods = Food.all
     end
-    @food_names = @foods.of_food_name_list
+    @food_names = FoodName.where(id: @foods.select(:food_name_id).distinct.pluck(:food_name_id))
   end
 
   def new

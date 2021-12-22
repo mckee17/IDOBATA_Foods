@@ -11,7 +11,6 @@
       <a role="button" data-toggle="collapse" href="#collapse_food_name<%= name.id %>" aria-expanded="false" aria-controls="collapse_food_name<%= name.id %>">
         <span class="collapse_food">▼</span>
       </a>
-      <% @search_foods = name.foods if (params[:id] == "name") %> <%# name_search -> foods %>
       <% @search_foods.each do |food| %>
         <% if food.food_name == name %>
           <div class="collapse" id="collapse_food_name<%= name.id %>"><%= render partial: 'public/foods/food', locals:{ food: food } %></div>
