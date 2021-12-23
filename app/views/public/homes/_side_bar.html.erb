@@ -1,8 +1,14 @@
-<div class="side_bar">
-  <% Genre.all.each do |genre| %>
-    <%= genre.name %><br>
-    <% genre.genre_food_names.each do |food_name| %>
-      <div class="ml-2 small"><%= food_name.name %>( <%= food_name.foods.count %> )<br></div> <%# link_to name->search %>
+<div class="col-6 col-lg-3 offset-3 offset-lg-0 mt-5 order-lg-1">
+  <div class="side_bar bg-light">
+    <% Genre.all.each do |genre| %>
+      <div class="h5 mb-0 mt-1"><%= genre.name %></div>
+      <% FoodName.where(id: genre.genre_food_names.select(:id).distinct).each do |name| %>
+        <div class="ml-2 h6 mb-0 mt-1">
+          <%= link_to food_name_path(name) do %>
+            <%= name.name %>( <%= name.foods.count %> )
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>

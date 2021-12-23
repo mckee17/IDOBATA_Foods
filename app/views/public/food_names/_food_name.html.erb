@@ -1,0 +1,18 @@
+<div class="mt-4 food_name offset-1">
+  <% food_name.food_genres.select(:name).distinct.each do |genre| %>
+    <span class="h5">【<%= genre.name %>】</span>
+  <% end %>
+  <span class="h5"><%= food_name.name %></span>
+  <span id="food_name_rate_<%= food_name.id %>" rate-score="<%= food_name.average_rate %>" class="ml-4"></span>
+</div>
+
+<script>
+  $('#food_name_rate_<%= food_name.id %>').empty();
+  $('#food_name_rate_<%= food_name.id %>').raty({
+    readOnly: true,
+    score: function(){
+      return $(this).attr('rate-score');
+    },
+    path: '/assets/'
+  });
+</script>

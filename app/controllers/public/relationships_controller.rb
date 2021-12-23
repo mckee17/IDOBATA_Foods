@@ -1,4 +1,5 @@
 class Public::RelationshipsController < ApplicationController
+  before_action :authenticate_user!
   def followed
     @followed = current_user.followed_user
   end
@@ -6,12 +7,10 @@ class Public::RelationshipsController < ApplicationController
   def create
     @food = Food.find(params[:id])
     Relationship.create(followed_id: @food.user_id, follow_id: current_user.id)
-    #redirect_back fallback_location: root_path
   end
 
   def destroy
     @food = Food.find(params[:id])
     Relationship.find_by(followed_id: @food.user_id, follow_id: current_user.id).destroy
-    #redirect_back fallback_location: root_path
   end
 end

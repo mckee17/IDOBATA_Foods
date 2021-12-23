@@ -1,17 +1,32 @@
 <div class="container">
   <div class="row">
-    <div class="col-3">
-      <%= render partial: 'side_bar' %>
-    </div>
-
-    <div class="col-9">
-      <h2>人気順</2>
-      <%#= 人気の定義を要検討 %>
-      <h2>新着順</h2>
-      <% @new.each do |n| %>
-        <%= n.food_name.name %>
-        <%= Food.where(food_name_id: n.food_name_id).average(:rate).round(1) %>
+    <div class="col-12 col-lg-9 order-lg-2">
+      <div class="h2 col-12 mt-3">新着順</div>
+      <div class="row mt-4">
+        <% @new.each do |new| %>
+          <%= render partial: 'top_food', locals:{ food: new } %>
+        <% end %>
+      </div>
+      <div class="h2 col-12 mt-5">人気順</div>
+      <div class="row mt-4">
+      <% @favorite.first(3).each do |favorite| %>
+        <%= render partial: 'top_food', locals:{ food: favorite } %>
       <% end %>
+      </div>
     </div>
+    <%= render partial: 'side_bar' %>
   </div>
 </div>
+
+<script>
+<% @foods.each do |food| %>
+  $('.food_rate_<%= food.id %>').empty();
+  $('.food_rate_<%= food.id %>').raty({
+    readOnly: true,
+    score: function(){
+      return $(this).attr('rate-score');
+    },
+    path: '/assets/'
+  });
+<% end %>
+</script>

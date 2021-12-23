@@ -1,4 +1,5 @@
 class Admin::GenresController < ApplicationController
+  before_action :authenticate_admin!
   def index
     @genres = Genre.all
     @genre = Genre.new
@@ -21,14 +22,12 @@ class Admin::GenresController < ApplicationController
     @genre = Genre.new(genre_params)
     @genres = Genre.all
     @genre.save
-      #redirect_back fallback_location: admin_genres_path
   end
 
   def destroy
     @genre = Genre.find(params[:id])
     @genres = Genre.all
     @genre.destroy
-      #redirect_back fallback_location: admin_genres_path
   end
 
   private

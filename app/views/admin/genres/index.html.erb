@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
-    <div class="col-8">
-      <div class="h2">ジャンル設定</div>
+    <div class="col-7 col-lg-6">
+      <div class="h2 my-3">ジャンル設定</div>
       <div id="genre_index"><%= render partial: 'admin/genres/genre', locals:{ genres: @genres } %></div>
     </div>
-    <div class="form col-4">
-      <div class="h5">新規作成</div>
+    <div class="form col-4 offset-1">
+      <div class="h5 mt-5 text-center">新規作成</div>
       <div id="genre_new"><%= render partial: 'admin/genres/genre_new', locals:{ genre: @genre } %></div>
     </div>
   </div>
