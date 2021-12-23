@@ -1,4 +1,5 @@
 class Public::RelationshipsController < ApplicationController
+  before_action :authenticate_user!
   def followed
     @followed = current_user.followed_user
   end

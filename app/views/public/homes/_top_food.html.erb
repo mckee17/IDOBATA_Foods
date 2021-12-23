@@ -1,0 +1,13 @@
+
+  <div class="card col-3 p-0 mx-3 text-center bg-light">
+    <div class="card-header">
+      <%= link_to food_name_path(food.food_name) do %>
+        <span class="h5"><%= food.food_name.name %></span>
+      <% end %>
+    </div>
+    <div class="card-body">
+      <p class="card-title h6 font-weight-bold"><%= food.compound.name %></p>
+      <p class="card-text h6"><%= food.function %></p>
+      <dvi class="food_rate_<%= food.id %>" rate-score="<%= food.rate %>"></dvi>
+    </div>
+  </div>

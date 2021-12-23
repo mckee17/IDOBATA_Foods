@@ -16,9 +16,22 @@
 @import "bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Noto+Sans+JP&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Kosugi+Maru&family=Noto+Sans+JP&display=swap');
 
 body{
   background-color: #F4F5F7;
+}
+a{
+  color: black;
+}
+
+.logo{
+  font-family: 'Concert One', cursive;
+  font-size: 1.4rem;
+}
+
+.navbar{
+  background-color: #a1d8e2;
 }
 
 .side_bar{
@@ -36,11 +49,7 @@ body{
  display:none;
 }
 
-a{
-  color: black;
-}
-
-.h2,.h5,.h6,table{
+.h2,.h5,.h6,.form-control,table{
   font-family: 'Noto Sans JP', sans-serif;
 }
 .nav-item,.small{
@@ -54,10 +63,14 @@ a{
   white-space: nowrap;
 }
 
-#label_on{
+.label_on{
   color: orange;
   font-size: 1.5em;
 }
-#label_off{
+.label_off{
   color: gray;
+}
+
+a.btn-sm{
+  padding: 0.1rem 0.5rem;
 }

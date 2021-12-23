@@ -3,19 +3,14 @@
     <div class="col-12 col-lg-9 order-lg-2">
       <div class="h2 col-12 mt-3">新着順</div>
       <div class="row mt-4">
-      <% @new.each do |new| %>
-        <div class="card col-3 p-0 mx-3 text-center bg-light">
-          <div class="card-header">
-            <%= link_to food_name_path(new.food_name) do %>
-              <span class="h5"><%= new.food_name.name %></span>
-            <% end %>
-          </div>
-          <div class="card-body">
-            <p class="card-title h6 font-weight-bold"><%= new.compound.name %></p>
-            <p class="card-text h6"><%= new.function %></p>
-            <dvi id="food_rate_<%= new.id %>" rate-score="<%= new.rate %>"></dvi>
-          </div>
-        </div>
+        <% @new.each do |new| %>
+          <%= render partial: 'top_food', locals:{ food: new } %>
+        <% end %>
+      </div>
+      <div class="h2 col-12 mt-5">人気順</div>
+      <div class="row mt-4">
+      <% @favorite.first(3).each do |favorite| %>
+        <%= render partial: 'top_food', locals:{ food: favorite } %>
       <% end %>
       </div>
     </div>
@@ -24,9 +19,9 @@
 </div>
 
 <script>
-<% @new.each do |new| %>
-  $('#food_rate_<%= new.id %>').empty();
-  $('#food_rate_<%= new.id %>').raty({
+<% @foods.each do |food| %>
+  $('.food_rate_<%= food.id %>').empty();
+  $('.food_rate_<%= food.id %>').raty({
     readOnly: true,
     score: function(){
       return $(this).attr('rate-score');

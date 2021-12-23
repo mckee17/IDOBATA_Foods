@@ -1,6 +1,7 @@
-<div class="card bg-light mt-3 offset-md-1" style="max-width: 540px;">
+<div class="card bg-light mt-3 offset-1" style="max-width: 540px;">
   <div class="row no-gutters">
     <div class="col-3">
+      <div class="col-12 text-muted my-1"><%= food.genre.name %></div>
       <%= attachment_image_tag food, :image, :fill, 134, 134 %>
     </div>
     <div class="col-9">
@@ -8,6 +9,8 @@
         <div class="text-right">
           <% if user_signed_in? %>
           <span id="favorite_<%= food.id %>"><%= render partial: 'public/favorites/favorite', locals:{ food: food } %></span>
+          <% else %>
+          <i class="fas fa-tag label_off"></i>
           <% end %>
         </div>
         <div class="card-title h5"><%= food.compound.name %></div>

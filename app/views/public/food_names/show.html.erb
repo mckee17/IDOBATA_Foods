@@ -2,10 +2,10 @@
   <div class="row">
     <div class="col-12 col-lg-9 order-lg-2">
       <div class="h2 col-12 mt-3">詳細画面</div>
-        <div class="pb-3"><%= render partial: 'public/food_names/food_name', locals:{ food_name: @food_name } %></div>
-        <% @foods.each do |food| %>
-          <%= render partial: 'public/foods/food', locals:{ food: food } %>
-        <% end %>
+      <div class="pb-3"><%= render partial: 'public/food_names/food_name', locals:{ food_name: @food_name } %></div>
+      <% @foods.each do |food| %>
+        <%= render partial: 'public/foods/food', locals:{ food: food } %>
+      <% end %>
     </div>
     <%= render partial: '/public/homes/side_bar' %>
   </div>

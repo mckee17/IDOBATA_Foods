@@ -1,5 +1,5 @@
 <% if Favorite.find_by(food_id: food.id, user_id: current_user.id).present? %>
-  <%= link_to favorite_path(id: food.id), method: :delete, remote: true do %><i id="label_on" class="fas fa-tag"></i><% end %>
+  <%= link_to favorite_path(id: food.id), method: :delete, remote: true do %><i class="fas fa-tag label_on"></i><% end %>
 <% else %>
-  <%= link_to favorites_path(id: food.id), method: :post, remote: true do %><i id="label_off" class="fas fa-tag"></i><% end %>
+  <%= link_to favorites_path(id: food.id), method: :post, remote: true do %><i class="fas fa-tag label_off"></i><% end %>
 <% end %>

@@ -11,8 +11,9 @@
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #a1d8e2;">
-        <%= link_to "HOME", root_path %>
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <%= link_to "IDOBATA", root_path, class: "logo" %>
+        <div class="navbar-line"></div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -80,7 +81,7 @@
             <div class="row">
               <div class="form col-12 my-5">
                 <%= form_with url: '/searchs', method: :get, local: true do |f| %>
-                  <%= f.text_field :word, class: "form-control col-6 offset-md-1", style:"display: inline-block;", placeholder:"検索ワード" %>
+                  <%= f.text_field :word, class: "form-control col-6 offset-1", style:"display: inline-block;", placeholder:"検索ワード" %>
                   <%= f.select :id, { '食品名': 'name', '成分名': 'compound', '機能': 'function' }, { include_blank: '選択してください' }, { class: 'form-control col-3', style:"display: inline-block;", required: true } %>
                   <%= f.submit "検索", class: "form-control col-1", style:"display: inline-block;" %>
                 <% end %>
@@ -89,6 +90,6 @@
           </div>
         </div>
     </header>
-    <div class="main"><%= yield %></div>
+    <div class="main mb-4"><%= yield %></div>
   </body>
 </html>
