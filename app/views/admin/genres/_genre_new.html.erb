@@ -1,4 +1,6 @@
-<%= form_with model: [:admin,genre], remote: true do |f| %>
-  <%= f.text_field :name %>
-  <%= f.submit %>
-<% end %>
+<div class="form mt-4">
+  <%= form_with model: [:admin,genre], remote: true do |f| %>
+    <%= f.text_field :name, class: "form-control col-10 offset-1" %>
+    <%= f.submit "登録", class: "btn btn-success col-10 offset-1" %>
+  <% end %>
+</div>

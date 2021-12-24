@@ -10,10 +10,10 @@ Genre.create!(
         { name: '貝' },
         { name: '水産動物' },
         { name: '海藻' },
-        { name: '酪農製品 [加工食品]' },
-        { name: '調味料 [加工食品]' },
-        { name: '食用油 [加工食品]' },
-        { name: '飲料水[加工食品]' },
+        { name: '酪農製品' },
+        { name: '調味料' },
+        { name: '食用油' },
+        { name: '飲料水' },
         { name: 'その他' }
     ]
 )
@@ -23,4 +23,8 @@ User.create!(
         { name: 'Test_User_2', password: ENV['TEST_USER_PASSWORD'] },
         { name: 'Test_User_3', password: ENV['TEST_USER_PASSWORD'] }
     ]
+)
+Admin.create!(
+    email: "admin@example.com",
+    password: ENV['ADMIN_PASSWORD']
 )
