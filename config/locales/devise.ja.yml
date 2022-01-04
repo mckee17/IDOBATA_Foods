@@ -19,6 +19,7 @@ ja:
               confirmation: "が内容とあっていません。"
     attributes:
       user:
+        name: ユーザー名
         confirmation_sent_at: パスワード確認送信時刻
         confirmation_token: パスワード確認用トークン
         confirmed_at: パスワード確認時刻

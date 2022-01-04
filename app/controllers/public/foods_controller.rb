@@ -2,6 +2,7 @@ class Public::FoodsController < ApplicationController
   def show
     @food = Food.find(params[:id])
     @food_name = @food.food_name
+    @image = Vision.get_image_data(@food.image)
   end
 
   def index
