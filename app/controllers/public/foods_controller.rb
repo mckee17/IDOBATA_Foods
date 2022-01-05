@@ -2,7 +2,7 @@ class Public::FoodsController < ApplicationController
   def show
     @food = Food.find(params[:id])
     @food_name = @food.food_name
-    @image = Vision.get_image_data(@food.image)
+    #@image = Vision.get_image_data(@food.image)
   end
 
   def index
@@ -33,35 +33,62 @@ class Public::FoodsController < ApplicationController
 
   def create
     @food = Food.new(food_params)
-    @food_name = FoodName.new(food_name_params) # fieldfor
-    @compound = Compound.new(compound_params) # fieldfor
-
-    FoodName.all.each do |name| # uniq->food_name.id
-      @food.food_name_id = name.id if name.name == params[:food_name][:name]
-    end
-    if @food.food_name_id.blank? # not_uniq->food_name.id
+    @food_name = FoodName.find_by(name: params[:food_name][:name]) # field for
+    @compound = Compound.find_by(name: params[:compound][:name]) # field for
+    
+    if @food_name.present? # Uniq FoodName
+      @food.food_name_id = @food_name.id
+    else
+      @food_name = FoodName.new(food_name_params)
       @food_name.save
       @food.food_name_id = @food_name.id
     end
-    Compound.all.each do |compound| # uniq->compound.id
-      @food.compound_id = compound.id if compound.name == params[:compound][:name]
-    end
-    if @food.compound_id.blank? # not_uniq->compound.id
+    if @compound.present? # Uniq Compound
+      @food.compound_id = @compound.id
+    else
+      @compound = Compound.new(compound_params)
       @compound.save
       @food.compound_id = @compound.id
     end
     @food.user_id = current_user.id if user_signed_in?
     if @food.save
-      redirect_to food_path(@food)
-    else render :new
+      if !@food.safe_image? # Vision API/SafeSearch
+        File.delete("#{Rails.root}/public/uploads/#{@food.image.id}")
+        @food.update(image_id: nil)
+      end
+        redirect_to food_path(@food)
+    else
+      render :new
     end
   end
 
   def update
     @food = Food.find(params[:id])
-    if @food.update(food_params) && FoodName.find(@food.food_name_id).update(food_name_params) && Compound.find(@food.compound_id).update(compound_params)
-      redirect_to food_path(@food)
-    else render :edit
+    @food_name = FoodName.find_by(name: params[:food_name][:name]) # field for
+    @compound = Compound.find_by(name: params[:compound][:name]) # field for
+    
+    if @food_name.present? # Uniq FoodName
+      @food.food_name_id = @food_name.id
+    else
+      @food_name = FoodName.new(food_name_params)
+      @food_name.save
+      @food.food_name_id = @food_name.id
+    end
+    if @compound.present? # Uniq Compound
+      @food.compound_id = @compound.id
+    else
+      @compound = Compound.new(compound_params)
+      @compound.save
+      @food.compound_id = @compound.id
+    end
+    if @food.update(food_params)
+      if !@food.safe_image? # Vision API/SafeSearch
+        File.delete("#{Rails.root}/public/uploads/#{@food.image.id}")
+        @food.update(image_id: nil)
+      end
+        redirect_to food_path(@food)
+    else
+      render :edit
     end
   end
 

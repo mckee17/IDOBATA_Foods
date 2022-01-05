@@ -12,4 +12,8 @@ class Food < ApplicationRecord
   validates :compound_id, presence: true
   validates :food_name_id, presence: true
   validates :genre_id, presence: true
+
+  def safe_image?
+    Vision.check_safe_image(self.image).values.all?{|i| i == "VERY_UNLIKELY"}
+  end
 end
