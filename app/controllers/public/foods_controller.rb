@@ -62,16 +62,20 @@ class Public::FoodsController < ApplicationController
     @food_name = FoodName.find_by(name: params[:food_name][:name]) # field for
     @compound = Compound.find_by(name: params[:compound][:name]) # field for
 
-    if @food_name.nil?
+    if @food_name.nil? && Food.where(food_name_id: @food.food_name.id).one?
+      @food.food_name.update(food_name_params)
+    elsif @food_name.nil?
       @food_name = FoodName.new(food_name_params)
       @food_name.save
     end
-      @food.food_name_id = @food_name.id
-    if @compound.nil?
+    @food.food_name_id = @food_name.id if @food_name.present?
+    if @compound.nil? && Food.where(compound_id: @food.compound.id).one?
+      @food.compound.update(compound_params)
+    elsif @compound.nil?
       @compound = Compound.new(compound_params)
       @compound.save
     end
-      @food.compound_id = @compound.id
+      @food.compound_id = @compound.id if @compound.present?
     if @food.update(food_params)
       if @food.image.present? && !@food.safe_image? # Vision API/SafeSearch
         File.delete("#{Rails.root}/public/uploads/#{@food.image.id}")

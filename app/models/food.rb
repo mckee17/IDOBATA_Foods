@@ -16,4 +16,7 @@ class Food < ApplicationRecord
   def safe_image?
     Vision.check_safe_image(self.image).values.all?{|i| i == "VERY_UNLIKELY" || i == "UNLIKELY"}
   end
+  def image_data_include?(word)
+    Vision.get_image_data(self.image).include?(word)
+  end
 end

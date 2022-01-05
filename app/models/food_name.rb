@@ -5,6 +5,6 @@ class FoodName < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   def average_rate
-    Food.where(food_name_id: id).average(:rate).round(1)
+    Food.where(food_name_id: id).average(:rate)
   end
 end
