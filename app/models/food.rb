@@ -14,6 +14,6 @@ class Food < ApplicationRecord
   validates :genre_id, presence: true
 
   def safe_image?
-    Vision.check_safe_image(self.image).values.all?{|i| i == "VERY_UNLIKELY"}
+    Vision.check_safe_image(self.image).values.all?{|i| i == "VERY_UNLIKELY" || i == "UNLIKELY"}
   end
 end
