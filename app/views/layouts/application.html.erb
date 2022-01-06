@@ -31,6 +31,11 @@
                 <% end %>
               </li>
               <li class="nav-item mx-2 my-1">
+                <%= link_to admin_foods_path do %>
+                  <i class="fas fa-atom"></i>構造式
+                <% end %>
+              </li>
+              <li class="nav-item mx-2 my-1">
                 <%= link_to destroy_admin_session_path, method: :delete do %>
                 <i class="far fa-user"></i>ログアウト
                 <% end %>

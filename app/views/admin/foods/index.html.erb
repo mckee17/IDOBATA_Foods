@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="h2 col-12 mt-3 pb-3">構造式一覧</div>
+      <% @foods.each do |food| %>
+        <% if food.image.present? && (food.image_data_include?("Parallel") || food.image_data_include?("Circle")) %>
+          <div class="card bg-light mt-3 offset-1" style="max-width: 540px;">
+            <div class="col-12 text-muted my-1"><%= food.compound.name %></div>
+            <div class="structure_image"><%= attachment_image_tag food, :image %></div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-6 offset-3 mt-5"><%= paginate @foods %></div>
+  </div>
+</div>
