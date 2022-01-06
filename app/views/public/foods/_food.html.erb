@@ -2,10 +2,8 @@
   <div class="row no-gutters">
     <div class="col-3">
       <div class="col-12 text-muted my-1"><%= food.genre.name %></div>
-      <% if food.image.present? %>
-        <% unless food.image_data_include?("Parallel") || food.image_data_include?("Circle") %> <%# 構造式を非表示 %>
+      <% if food.image.present? && !food.image_data_Structural_formula? %>
           <%= attachment_image_tag food, :image, :fill, 134, 134 %>
-        <% end %>
       <% end %>
     </div>
     <div class="col-9">

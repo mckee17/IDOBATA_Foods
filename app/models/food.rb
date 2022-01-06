@@ -19,4 +19,7 @@ class Food < ApplicationRecord
   def image_data_include?(word)
     Vision.get_image_data(self.image).include?(word)
   end
+  def image_data_Structural_formula?
+    self.image_data_include?("Parallel") || self.image_data_include?("Circle")
+  end
 end
