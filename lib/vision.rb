@@ -15,14 +15,14 @@ module Vision
       params = {
         requests: [{
           image: {
-            content: base64_image
+            content: base64_image,
           },
           features: [
             {
-              type: 'LABEL_DETECTION'
-            }
-          ]
-        }]
+              type: 'LABEL_DETECTION',
+            },
+          ],
+        }],
       }.to_json
 
       # Google Cloud Vision APIにリクエスト
@@ -52,14 +52,14 @@ module Vision
       params = {
         requests: [{
           image: {
-            content: base64_image
+            content: base64_image,
           },
           features: [
             {
-              type: 'SAFE_SEARCH_DETECTION'
-            }
-          ]
-        }]
+              type: 'SAFE_SEARCH_DETECTION',
+            },
+          ],
+        }],
       }.to_json
 
       # Google Cloud Vision APIにリクエスト
@@ -71,11 +71,11 @@ module Vision
       response = https.request(request, params)
       response_body = JSON.parse(response.body)
       # APIレスポンス出力
-        if(error = response_body['responses'][0]['error']).present?
-          raise error['message']
-        else
-          response_body['responses'][0]['safeSearchAnnotation']
-        end
+      if (error = response_body['responses'][0]['error']).present?
+        raise error['message']
+      else
+        response_body['responses'][0]['safeSearchAnnotation']
+      end
     end
   end
 end

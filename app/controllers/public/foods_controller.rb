@@ -39,19 +39,19 @@ class Public::FoodsController < ApplicationController
       @food_name = FoodName.new(food_name_params)
       @food_name.save
     end
-      @food.food_name_id = @food_name.id
+    @food.food_name_id = @food_name.id
     if @compound.nil?
       @compound = Compound.new(compound_params)
       @compound.save
     end
-      @food.compound_id = @compound.id
+    @food.compound_id = @compound.id
     @food.user_id = current_user.id if user_signed_in?
     if @food.save
       if @food.image.present? && !@food.safe_image? # Vision API/SafeSearch
         File.delete("#{Rails.root}/public/uploads/#{@food.image.id}")
         @food.update(image_id: nil)
       end
-        redirect_to food_path(@food)
+      redirect_to food_path(@food)
     else
       render :new
     end
@@ -79,15 +79,15 @@ class Public::FoodsController < ApplicationController
     elsif Food.where(compound_id: @food.compound.id).one?
       @compound_before = @food.compound
     end
-      @food.compound_id = @compound.id if @compound.present?
+    @food.compound_id = @compound.id if @compound.present?
     if @food.update(food_params)
       if @food.image.present? && !@food.safe_image? # Vision API/SafeSearch
         File.delete("#{Rails.root}/public/uploads/#{@food.image.id}")
         @food.update(image_id: nil)
       end
-        @food_name_before.destroy if @food_name_before.present?
-        @compound_before.destroy if @compound_before.present?
-        redirect_to food_path(@food)
+      @food_name_before.destroy if @food_name_before.present?
+      @compound_before.destroy if @compound_before.present?
+      redirect_to food_path(@food)
     else
       render :edit
     end

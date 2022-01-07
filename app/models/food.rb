@@ -14,12 +14,14 @@ class Food < ApplicationRecord
   validates :genre_id, presence: true
 
   def safe_image?
-    Vision.check_safe_image(self.image).values.all?{|i| i == "VERY_UNLIKELY" || i == "UNLIKELY"}
+    Vision.check_safe_image(image).values.all? { |i| i == "VERY_UNLIKELY" || i == "UNLIKELY" }
   end
+
   def image_data_include?(word)
-    Vision.get_image_data(self.image).include?(word)
+    Vision.get_image_data(image).include?(word)
   end
+
   def image_data_Structural_formula?
-    self.image_data_include?("Parallel") || self.image_data_include?("Circle")
+    image_data_include?("Parallel") || image_data_include?("Circle")
   end
 end
