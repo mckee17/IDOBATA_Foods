@@ -15,7 +15,8 @@ class Public::FoodsController < ApplicationController
     else
       @foods = Food.all
     end
-    @food_names = FoodName.where(id: @foods.select(:food_name_id).distinct.pluck(:food_name_id)).page(params[:page]).per(15)
+    @food_names = @foods.select(:food_name_id).distinct.pluck(:food_name_id)
+    @food_names = FoodName.where(id: @food_names).page(params[:page]).per(15)
   end
 
   def new
@@ -62,13 +63,11 @@ class Public::FoodsController < ApplicationController
     @food_name = FoodName.find_by(name: params[:food_name][:name]) # field for
     @compound = Compound.find_by(name: params[:compound][:name]) # field for
 
-    if @food_name.nil? && Food.where(food_name_id: @food.food_name.id).one? # 単一データ->新規
+    if @food_name.nil? && Food.where(food_name_id: @food.food_name.id).one?
       @food.food_name.update(food_name_params)
-    elsif @food_name.nil? # 新規
+    elsif @food_name.nil?
       @food_name = FoodName.new(food_name_params)
       @food_name.save
-    elsif Food.where(food_name_id: @food.food_name.id).one? # 単一データ->既存
-      @food_name_before = @food.food_name
     end
     @food.food_name_id = @food_name.id if @food_name.present?
     if @compound.nil? && Food.where(compound_id: @food.compound.id).one?
@@ -76,8 +75,6 @@ class Public::FoodsController < ApplicationController
     elsif @compound.nil?
       @compound = Compound.new(compound_params)
       @compound.save
-    elsif Food.where(compound_id: @food.compound.id).one?
-      @compound_before = @food.compound
     end
     @food.compound_id = @compound.id if @compound.present?
     if @food.update(food_params)
@@ -85,8 +82,8 @@ class Public::FoodsController < ApplicationController
         File.delete("#{Rails.root}/public/uploads/#{@food.image.id}")
         @food.update(image_id: nil)
       end
-      @food_name_before.destroy if @food_name_before.present?
-      @compound_before.destroy if @compound_before.present?
+      FoodName.where.not(id: Food.select(:food_name_id)).destroy_all # Food情報のないFoodNameを削除
+      Compound.where.not(id: Food.select(:compound_id)).destroy_all # Food情報のないCompoundを削除
       redirect_to food_path(@food)
     else
       render :edit
