@@ -62,11 +62,13 @@ class Public::FoodsController < ApplicationController
     @food_name = FoodName.find_by(name: params[:food_name][:name]) # field for
     @compound = Compound.find_by(name: params[:compound][:name]) # field for
 
-    if @food_name.nil? && Food.where(food_name_id: @food.food_name.id).one?
+    if @food_name.nil? && Food.where(food_name_id: @food.food_name.id).one? # 単一データ->新規
       @food.food_name.update(food_name_params)
-    elsif @food_name.nil?
+    elsif @food_name.nil? # 新規
       @food_name = FoodName.new(food_name_params)
       @food_name.save
+    elsif Food.where(food_name_id: @food.food_name.id).one? # 単一データ->既存
+      @food_name_before = @food.food_name
     end
     @food.food_name_id = @food_name.id if @food_name.present?
     if @compound.nil? && Food.where(compound_id: @food.compound.id).one?
@@ -74,6 +76,8 @@ class Public::FoodsController < ApplicationController
     elsif @compound.nil?
       @compound = Compound.new(compound_params)
       @compound.save
+    elsif Food.where(compound_id: @food.compound.id).one?
+      @compound_before = @food.compound
     end
       @food.compound_id = @compound.id if @compound.present?
     if @food.update(food_params)
@@ -81,6 +85,8 @@ class Public::FoodsController < ApplicationController
         File.delete("#{Rails.root}/public/uploads/#{@food.image.id}")
         @food.update(image_id: nil)
       end
+        @food_name_before.destroy if @food_name_before.present?
+        @compound_before.destroy if @compound_before.present?
         redirect_to food_path(@food)
     else
       render :edit
