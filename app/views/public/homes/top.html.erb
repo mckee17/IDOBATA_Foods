@@ -7,7 +7,7 @@
           <%= render partial: 'top_food', locals:{ food: new } %>
         <% end %>
       </div>
-      <div class="h2 col-12 mt-5">人気順</div>
+      <div class="h2 col-12 mt-5">人気順</div><%# お気に入りの多い順 %>
       <div class="row mt-4">
       <% @favorite.first(3).each do |favorite| %>
         <%= render partial: 'top_food', locals:{ food: favorite } %>
